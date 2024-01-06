@@ -1,0 +1,169 @@
+ARM GAS  C:\Users\leone\AppData\Local\Temp\ccyRfm7M.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"main.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Src/main.c"
+  20              		.section	.text.main,"ax",%progbits
+  21              		.align	1
+  22              		.global	main
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	main:
+  28              	.LFB0:
+   1:Src/main.c    **** #include <stdint.h>
+   2:Src/main.c    **** #include "rcc.h"
+   3:Src/main.c    **** #include "gpio.h"
+   4:Src/main.c    **** 
+   5:Src/main.c    **** int main(void)
+   6:Src/main.c    **** {
+  29              		.loc 1 6 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+   7:Src/main.c    ****   uint32_t button_state;
+  34              		.loc 1 7 3 view .LVU1
+   8:Src/main.c    ****   
+   9:Src/main.c    ****   RCC->AHB1ENR |=  RCC_AHB1ENR_GPIOA_EN;      // Enable clock port A (Led)
+  35              		.loc 1 9 3 view .LVU2
+  36              		.loc 1 9 6 is_stmt 0 view .LVU3
+  37 0000 154B     		ldr	r3, .L5
+  38 0002 1A6B     		ldr	r2, [r3, #48]
+  39              		.loc 1 9 16 view .LVU4
+  40 0004 42F00102 		orr	r2, r2, #1
+  41 0008 1A63     		str	r2, [r3, #48]
+  10:Src/main.c    ****   RCC->AHB1ENR |=  RCC_AHB1ENR_GPIOC_EN;      // Enable clock port C (Button)
+  42              		.loc 1 10 3 is_stmt 1 view .LVU5
+  43              		.loc 1 10 6 is_stmt 0 view .LVU6
+  44 000a 1A6B     		ldr	r2, [r3, #48]
+  45              		.loc 1 10 16 view .LVU7
+  46 000c 42F00402 		orr	r2, r2, #4
+  47 0010 1A63     		str	r2, [r3, #48]
+  11:Src/main.c    ****   GPIOA->MODER &= ~(GPIO_MODER_05_OUTPUT);    // Clen registers port A
+ARM GAS  C:\Users\leone\AppData\Local\Temp\ccyRfm7M.s 			page 2
+
+
+  48              		.loc 1 11 3 is_stmt 1 view .LVU8
+  49              		.loc 1 11 8 is_stmt 0 view .LVU9
+  50 0012 A3F56053 		sub	r3, r3, #14336
+  51 0016 1A68     		ldr	r2, [r3]
+  52              		.loc 1 11 16 view .LVU10
+  53 0018 22F48062 		bic	r2, r2, #1024
+  54 001c 1A60     		str	r2, [r3]
+  12:Src/main.c    ****   GPIOA->MODER |=  GPIO_MODER_05_OUTPUT;      // Set output pin 5
+  55              		.loc 1 12 3 is_stmt 1 view .LVU11
+  56              		.loc 1 12 8 is_stmt 0 view .LVU12
+  57 001e 1A68     		ldr	r2, [r3]
+  58              		.loc 1 12 16 view .LVU13
+  59 0020 42F48062 		orr	r2, r2, #1024
+  60 0024 1A60     		str	r2, [r3]
+  13:Src/main.c    ****   GPIOC->MODER &= ~(GPIO_MODER_INPUT);        // Clean resgister port C    
+  61              		.loc 1 13 3 is_stmt 1 view .LVU14
+  62              		.loc 1 13 8 is_stmt 0 view .LVU15
+  63 0026 03F50063 		add	r3, r3, #2048
+  64 002a 1A68     		ldr	r2, [r3]
+  65              		.loc 1 13 16 view .LVU16
+  66 002c 1A60     		str	r2, [r3]
+  14:Src/main.c    ****   GPIOC->PUPDR |= GPIO_PUPDR_13_PULL_UP;
+  67              		.loc 1 14 3 is_stmt 1 view .LVU17
+  68              		.loc 1 14 8 is_stmt 0 view .LVU18
+  69 002e DA68     		ldr	r2, [r3, #12]
+  70              		.loc 1 14 16 view .LVU19
+  71 0030 42F08062 		orr	r2, r2, #67108864
+  72 0034 DA60     		str	r2, [r3, #12]
+  73 0036 04E0     		b	.L2
+  74              	.LVL0:
+  75              	.L3:
+  15:Src/main.c    ****   
+  16:Src/main.c    ****   while (1)
+  17:Src/main.c    ****   {
+  18:Src/main.c    ****     button_state = GPIOC->IDR;
+  19:Src/main.c    ****     if (button_state == 0x00002000)
+  20:Src/main.c    ****     {
+  21:Src/main.c    ****       GPIOA->ODR   &= ~(GPIO_ODR_05_ON);
+  22:Src/main.c    ****     }
+  23:Src/main.c    ****     else
+  24:Src/main.c    ****     {
+  25:Src/main.c    ****       GPIOA->ODR   |=  GPIO_ODR_05_ON;
+  76              		.loc 1 25 7 is_stmt 1 view .LVU20
+  77              		.loc 1 25 12 is_stmt 0 view .LVU21
+  78 0038 084A     		ldr	r2, .L5+4
+  79 003a 5369     		ldr	r3, [r2, #20]
+  80              	.LVL1:
+  81              		.loc 1 25 20 view .LVU22
+  82 003c 43F02003 		orr	r3, r3, #32
+  83 0040 5361     		str	r3, [r2, #20]
+  84              	.LVL2:
+  85              	.L2:
+  16:Src/main.c    ****   {
+  86              		.loc 1 16 3 is_stmt 1 view .LVU23
+  18:Src/main.c    ****     if (button_state == 0x00002000)
+  87              		.loc 1 18 5 view .LVU24
+  18:Src/main.c    ****     if (button_state == 0x00002000)
+ARM GAS  C:\Users\leone\AppData\Local\Temp\ccyRfm7M.s 			page 3
+
+
+  88              		.loc 1 18 18 is_stmt 0 view .LVU25
+  89 0042 074B     		ldr	r3, .L5+8
+  90 0044 1B69     		ldr	r3, [r3, #16]
+  91              	.LVL3:
+  19:Src/main.c    ****     {
+  92              		.loc 1 19 5 is_stmt 1 view .LVU26
+  19:Src/main.c    ****     {
+  93              		.loc 1 19 8 is_stmt 0 view .LVU27
+  94 0046 B3F5005F 		cmp	r3, #8192
+  95 004a F5D1     		bne	.L3
+  21:Src/main.c    ****     }
+  96              		.loc 1 21 7 is_stmt 1 view .LVU28
+  21:Src/main.c    ****     }
+  97              		.loc 1 21 12 is_stmt 0 view .LVU29
+  98 004c 034A     		ldr	r2, .L5+4
+  99 004e 5369     		ldr	r3, [r2, #20]
+ 100              	.LVL4:
+  21:Src/main.c    ****     }
+ 101              		.loc 1 21 20 view .LVU30
+ 102 0050 23F02003 		bic	r3, r3, #32
+ 103 0054 5361     		str	r3, [r2, #20]
+ 104 0056 F4E7     		b	.L2
+ 105              	.L6:
+ 106              		.align	2
+ 107              	.L5:
+ 108 0058 00380240 		.word	1073887232
+ 109 005c 00000240 		.word	1073872896
+ 110 0060 00080240 		.word	1073874944
+ 111              		.cfi_endproc
+ 112              	.LFE0:
+ 114              		.text
+ 115              	.Letext0:
+ 116              		.file 2 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.2 Rel1/arm-none-eabi/include/ma
+ 117              		.file 3 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.2 Rel1/arm-none-eabi/include/sy
+ 118              		.file 4 "Inc/rcc.h"
+ 119              		.file 5 "Inc/gpio.h"
+ARM GAS  C:\Users\leone\AppData\Local\Temp\ccyRfm7M.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\leone\AppData\Local\Temp\ccyRfm7M.s:21     .text.main:00000000 $t
+C:\Users\leone\AppData\Local\Temp\ccyRfm7M.s:27     .text.main:00000000 main
+C:\Users\leone\AppData\Local\Temp\ccyRfm7M.s:108    .text.main:00000058 $d
+
+NO UNDEFINED SYMBOLS

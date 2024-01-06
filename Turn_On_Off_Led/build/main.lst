@@ -1,0 +1,109 @@
+ARM GAS  C:\Users\leone\AppData\Local\Temp\cc3jROFj.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"main.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Src/main.c"
+  20              		.section	.text.main,"ax",%progbits
+  21              		.align	1
+  22              		.global	main
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	main:
+  28              	.LFB3:
+   1:Src/main.c    **** #include <stdint.h>
+   2:Src/main.c    **** #include <stdio.h>
+   3:Src/main.c    **** #include "rcc.h"
+   4:Src/main.c    **** #include "gpio.h"
+   5:Src/main.c    **** 
+   6:Src/main.c    **** int main(void)
+   7:Src/main.c    **** {
+  29              		.loc 1 7 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+   8:Src/main.c    ****   RCC->AHB1ENR |=  RCC_AHB1ENR_GPIOA_EN;
+  34              		.loc 1 8 3 view .LVU1
+  35              		.loc 1 8 6 is_stmt 0 view .LVU2
+  36 0000 0B4A     		ldr	r2, .L2
+  37 0002 136B     		ldr	r3, [r2, #48]
+  38              		.loc 1 8 16 view .LVU3
+  39 0004 43F00103 		orr	r3, r3, #1
+  40 0008 1363     		str	r3, [r2, #48]
+   9:Src/main.c    ****   GPIOA->MODER &= ~(GPIO_MODER_05_OUTPUT);
+  41              		.loc 1 9 3 is_stmt 1 view .LVU4
+  42              		.loc 1 9 8 is_stmt 0 view .LVU5
+  43 000a 0A4B     		ldr	r3, .L2+4
+  44 000c 1A68     		ldr	r2, [r3]
+  45              		.loc 1 9 16 view .LVU6
+  46 000e 22F48062 		bic	r2, r2, #1024
+  47 0012 1A60     		str	r2, [r3]
+  10:Src/main.c    ****   GPIOA->MODER |=  GPIO_MODER_05_OUTPUT;
+  48              		.loc 1 10 3 is_stmt 1 view .LVU7
+ARM GAS  C:\Users\leone\AppData\Local\Temp\cc3jROFj.s 			page 2
+
+
+  49              		.loc 1 10 8 is_stmt 0 view .LVU8
+  50 0014 1A68     		ldr	r2, [r3]
+  51              		.loc 1 10 16 view .LVU9
+  52 0016 42F48062 		orr	r2, r2, #1024
+  53 001a 1A60     		str	r2, [r3]
+  11:Src/main.c    ****   GPIOA->ODR   |=  GPIO_ODR_05_ON;
+  54              		.loc 1 11 3 is_stmt 1 view .LVU10
+  55              		.loc 1 11 8 is_stmt 0 view .LVU11
+  56 001c 5A69     		ldr	r2, [r3, #20]
+  57              		.loc 1 11 16 view .LVU12
+  58 001e 42F02002 		orr	r2, r2, #32
+  59 0022 5A61     		str	r2, [r3, #20]
+  12:Src/main.c    ****   GPIOA->ODR   &= ~(GPIO_ODR_05_ON);
+  60              		.loc 1 12 3 is_stmt 1 view .LVU13
+  61              		.loc 1 12 8 is_stmt 0 view .LVU14
+  62 0024 5A69     		ldr	r2, [r3, #20]
+  63              		.loc 1 12 16 view .LVU15
+  64 0026 22F02002 		bic	r2, r2, #32
+  65 002a 5A61     		str	r2, [r3, #20]
+  13:Src/main.c    **** }...
+  66              		.loc 1 13 1 view .LVU16
+  67 002c 0020     		movs	r0, #0
+  68 002e 7047     		bx	lr
+  69              	.L3:
+  70              		.align	2
+  71              	.L2:
+  72 0030 00380240 		.word	1073887232
+  73 0034 00000240 		.word	1073872896
+  74              		.cfi_endproc
+  75              	.LFE3:
+  77              		.text
+  78              	.Letext0:
+  79              		.file 2 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.2 Rel1/arm-none-eabi/include/ma
+  80              		.file 3 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.2 Rel1/arm-none-eabi/include/sy
+  81              		.file 4 "Inc/rcc.h"
+  82              		.file 5 "Inc/gpio.h"
+ARM GAS  C:\Users\leone\AppData\Local\Temp\cc3jROFj.s 			page 3
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\leone\AppData\Local\Temp\cc3jROFj.s:21     .text.main:00000000 $t
+C:\Users\leone\AppData\Local\Temp\cc3jROFj.s:27     .text.main:00000000 main
+C:\Users\leone\AppData\Local\Temp\cc3jROFj.s:72     .text.main:00000030 $d
+
+NO UNDEFINED SYMBOLS

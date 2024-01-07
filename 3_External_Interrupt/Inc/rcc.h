@@ -33,8 +33,6 @@ typedef struct {
 	__IO uint32_t SSCGR;		// Offset 0x80
 	__IO uint32_t PLLI2SCFGR;	// Offset 0x84
 	__IO uint32_t DCKCFGR;		// Offset 0x8C
-
-
 } RCC_t;
 
 #define RCC ((RCC_t *)(RCC_BASE_ADDRESS))

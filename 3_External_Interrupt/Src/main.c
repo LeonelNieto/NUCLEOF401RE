@@ -11,7 +11,7 @@ int main(void)
   GPIOA->MODER &= ~(GPIO_MODER_05_OUTPUT);    // Clen registers port A
   GPIOA->MODER |=  GPIO_MODER_05_OUTPUT;      // Set output pin 5
   GPIOC->MODER &= ~(GPIO_MODER_INPUT);        // Clean resgister port C    
-  GPIOC->PUPDR |= GPIO_PUPDR_NO_PUPD;
+  GPIOC->PUPDR |= GPIO_PUPDR_NO_PUPD;         // No pull up, pull down
   
   while (1)
   {

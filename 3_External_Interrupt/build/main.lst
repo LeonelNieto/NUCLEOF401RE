@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\leone\AppData\Local\Temp\ccC2yhpo.s 			page 1
+ARM GAS  C:\Users\leone\AppData\Local\Temp\ccQlvsqg.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\leone\AppData\Local\Temp\ccC2yhpo.s 			page 1
   46 000c 42F00402 		orr	r2, r2, #4
   47 0010 1A63     		str	r2, [r3, #48]
   11:Src/main.c    ****   GPIOA->MODER &= ~(GPIO_MODER_05_OUTPUT);    // Clen registers port A
-ARM GAS  C:\Users\leone\AppData\Local\Temp\ccC2yhpo.s 			page 2
+ARM GAS  C:\Users\leone\AppData\Local\Temp\ccQlvsqg.s 			page 2
 
 
   48              		.loc 1 11 3 is_stmt 1 view .LVU8
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\leone\AppData\Local\Temp\ccC2yhpo.s 			page 1
   86              		.loc 1 18 5 view .LVU24
   18:Src/main.c    ****     if (button_state == 0x00002000)
   87              		.loc 1 18 18 is_stmt 0 view .LVU25
-ARM GAS  C:\Users\leone\AppData\Local\Temp\ccC2yhpo.s 			page 3
+ARM GAS  C:\Users\leone\AppData\Local\Temp\ccQlvsqg.s 			page 3
 
 
   88 003e 074B     		ldr	r3, .L5+8
@@ -156,13 +156,13 @@ ARM GAS  C:\Users\leone\AppData\Local\Temp\ccC2yhpo.s 			page 1
  116              		.file 3 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.2 Rel1/arm-none-eabi/include/sy
  117              		.file 4 "Inc/rcc.h"
  118              		.file 5 "Inc/gpio.h"
-ARM GAS  C:\Users\leone\AppData\Local\Temp\ccC2yhpo.s 			page 4
+ARM GAS  C:\Users\leone\AppData\Local\Temp\ccQlvsqg.s 			page 4
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-C:\Users\leone\AppData\Local\Temp\ccC2yhpo.s:21     .text.main:00000000 $t
-C:\Users\leone\AppData\Local\Temp\ccC2yhpo.s:27     .text.main:00000000 main
-C:\Users\leone\AppData\Local\Temp\ccC2yhpo.s:107    .text.main:00000054 $d
+C:\Users\leone\AppData\Local\Temp\ccQlvsqg.s:21     .text.main:00000000 $t
+C:\Users\leone\AppData\Local\Temp\ccQlvsqg.s:27     .text.main:00000000 main
+C:\Users\leone\AppData\Local\Temp\ccQlvsqg.s:107    .text.main:00000054 $d
 
 NO UNDEFINED SYMBOLS

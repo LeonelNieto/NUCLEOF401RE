@@ -1,6 +1,5 @@
 #define __IO volatile
 
-
 // ################################################################# //
 //                                RCC                                //
 // ################################################################# //
@@ -139,19 +138,40 @@
 #define GPIO_PUPDR_15_PULL_RESERVED             ((uint32_t)0xC0000000)
 
 //                                     ODER                          //
-#define GPIO_ODR_00_ON                          ((uint32_t)0x000000001)
-#define GPIO_ODR_01_ON                          ((uint32_t)0x000000002)
-#define GPIO_ODR_02_ON                          ((uint32_t)0x000000004)
-#define GPIO_ODR_03_ON                          ((uint32_t)0x000000008)
-#define GPIO_ODR_04_ON                          ((uint32_t)0x000000010)
-#define GPIO_ODR_05_ON                          ((uint32_t)0x000000020)
-#define GPIO_ODR_06_ON                          ((uint32_t)0x000000040)
-#define GPIO_ODR_07_ON                          ((uint32_t)0x000000080)
-#define GPIO_ODR_08_ON                          ((uint32_t)0x000000100)
-#define GPIO_ODR_09_ON                          ((uint32_t)0x000000200)
-#define GPIO_ODR_10_ON                          ((uint32_t)0x000000400)
-#define GPIO_ODR_11_ON                          ((uint32_t)0x000000800)
-#define GPIO_ODR_12_ON                          ((uint32_t)0x000001000)
-#define GPIO_ODR_13_ON                          ((uint32_t)0x000002000)
-#define GPIO_ODR_14_ON                          ((uint32_t)0x000004000)
-#define GPIO_ODR_15_ON                          ((uint32_t)0x000008000)
+#define GPIO_ODR_00_ON                          ((uint32_t)0x00000001)
+#define GPIO_ODR_01_ON                          ((uint32_t)0x00000002)
+#define GPIO_ODR_02_ON                          ((uint32_t)0x00000004)
+#define GPIO_ODR_03_ON                          ((uint32_t)0x00000008)
+#define GPIO_ODR_04_ON                          ((uint32_t)0x00000010)
+#define GPIO_ODR_05_ON                          ((uint32_t)0x00000020)
+#define GPIO_ODR_06_ON                          ((uint32_t)0x00000040)
+#define GPIO_ODR_07_ON                          ((uint32_t)0x00000080)
+#define GPIO_ODR_08_ON                          ((uint32_t)0x00000100)
+#define GPIO_ODR_09_ON                          ((uint32_t)0x00000200)
+#define GPIO_ODR_10_ON                          ((uint32_t)0x00000400)
+#define GPIO_ODR_11_ON                          ((uint32_t)0x00000800)
+#define GPIO_ODR_12_ON                          ((uint32_t)0x00001000)
+#define GPIO_ODR_13_ON                          ((uint32_t)0x00002000)
+#define GPIO_ODR_14_ON                          ((uint32_t)0x00004000)
+#define GPIO_ODR_15_ON                          ((uint32_t)0x00008000)
+
+// ################################################################# //
+//                                EXTI                               //
+// ################################################################# //
+#define EXTI_BASE_ADDRESS                       ((uint32_t)0x40013C00)
+#define EXTI_IMR_MR13_ISNOTMASKED               ((uint32_t)0x00002000)
+#define EXTI_RTSR_TR13_RISING_TRIGGER_EN        ((uint32_t)0x00002000)
+#define EXTI_FTSR_TR13_FALLING_TRIGGER_EN       ((uint32_t)0x00002000)
+#define EXTI_PR_PR13_TRIGGER_OCCURRED           ((uint32_t)0x00002000)
+
+
+// ################################################################# //
+//                                SYSCFG                             //
+// ################################################################# //
+#define SYSCFG_BASE_ADDRESS                     ((uint32_t)0x40013800)
+#define SYSCFG_EXTICR4_PC13                     ((uint32_t)0x00000002)
+
+// ################################################################# //
+//                                EXTI                               //
+// ################################################################# //
+#define NVIC_BASE_ADDRESS                       ((uint32_t)0xE000E100)

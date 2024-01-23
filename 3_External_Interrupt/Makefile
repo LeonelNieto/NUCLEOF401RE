@@ -41,10 +41,11 @@ BUILD_DIR = build
 # Src/sysmem.c \
 # Inc/rcc.c
 
-INC_DIR_C = Inc
-SRC_DIR   = Src
+INC_DIR_C 	   = Inc
+SRC_DIR   	   = Src
+PERIPHERAL_DIR = peripheral
 
-C_SOURCES = $(wildcard $(SRC_DIR)/*.c) $(wildcard $(INC_DIR_C)/*.c)
+C_SOURCES = $(wildcard $(SRC_DIR)/*.c) $(wildcard $(INC_DIR_C)/*.c) $(wildcard $(PERIPHERAL_DIR)/*.c)
 
 # ASM sources
 ASM_SOURCES =  \

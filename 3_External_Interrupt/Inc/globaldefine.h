@@ -169,9 +169,11 @@
 //                                SYSCFG                             //
 // ################################################################# //
 #define SYSCFG_BASE_ADDRESS                     ((uint32_t)0x40013800)
-#define SYSCFG_EXTICR4_PC13                     ((uint32_t)0x00000002)
+#define SYSCFG_EXTICR4_PC13                     ((uint32_t)0x00000020)
 
 // ################################################################# //
 //                                EXTI                               //
 // ################################################################# //
 #define NVIC_BASE_ADDRESS                       ((uint32_t)0xE000E100)
+#define NVIC_PRIORITY_4                         ((uint8_t)0x40)
+#define NVIC_ISER_ENABLE_EXTI15_10_IRQn         ((uint32_t)0x00800000)

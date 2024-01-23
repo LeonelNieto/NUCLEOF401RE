@@ -12,7 +12,7 @@ typedef struct
     __IO uint32_t EXTICR2;          // Offset 0x0C
     __IO uint32_t EXTICR3;          // Offset 0x10
     __IO uint32_t EXTICR4;          // Offset 0x14
-    uint32_t RESERVADO0;            // Offset 0x1C
+    uint32_t RESERVADO0[2];         // Offset 0x18-0x1C
     __IO uint32_t CMPCR;            // Offset 0x20
 } SYSCFG_t;
 

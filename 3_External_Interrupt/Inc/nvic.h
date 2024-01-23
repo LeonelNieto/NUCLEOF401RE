@@ -3,19 +3,25 @@
 
 #include <stdint.h>
 #include "globaldefine.h"
+#include "irqn.h"
+
+void enableInterruptIRQn(IRQn_t IRQn);
 
 typedef struct
 {
-  __IO uint32_t ISER;                 /*!< Offset: 0x000 (R/W)  Interrupt Set Enable Register           */
-    uint32_t RESERVED0[31];
-  __IO uint32_t ICER;                 /*!< Offset: 0x080 (R/W)  Interrupt Clear Enable Register          */
-    uint32_t RSERVED1[31];
-  __IO uint32_t ISPR;                 /*!< Offset: 0x100 (R/W)  Interrupt Set Pending Register           */
-    uint32_t RESERVED2;
-  __IO uint32_t ICPR;                 /*!< Offset: 0x180 (R/W)  Interrupt Clear Pending Register         */
-    uint32_t RESERVED3;
-    uint32_t RESERVED4[64];
-  __IO uint32_t IP;                   /*!< Offset: 0x300 (R/W)  Interrupt Priority Register              */
+	__IO uint32_t ISER[8];            // Enable Interrupts
+         uint32_t RESERVED0[24];
+    __IO uint32_t ICER[8];            // Disable Interrupts
+         uint32_t RSERVED1[24];
+    __IO uint32_t ISPR[8];            // Conjunto de interrupciones pendientes
+         uint32_t RESERVED2[24];
+    __IO uint32_t ICPR[8];            // Conjunto de interrupciones pendientes
+         uint32_t RESERVED3[24];
+    __IO uint32_t IABR[8];            // Active Interrupts
+         uint32_t RESERVED4[56];
+    __IO uint8_t IP[240];             // Priority Interrupts
+         uint32_t RESERVED5[644];
+    __IO uint32_t STIR;               // Offset: 0xE00 ( /W)  Software Trigger Interrupt Register */
 }  NVIC_t;
 
 #define NVIC ((NVIC_t *)(NVIC_BASE_ADDRESS))

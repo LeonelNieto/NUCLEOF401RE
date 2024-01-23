@@ -3,6 +3,7 @@
     "cortex-debug.openocdPath": "C:/openocd/bin/openocd",
     "files.associations": {
         "stdint.h": "c",
-        "globaldefine.h": "c"
+        "globaldefine.h": "c",
+        "nvic.h": "c"
     }
 }

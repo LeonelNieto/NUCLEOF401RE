@@ -4,6 +4,10 @@
     "files.associations": {
         "stdint.h": "c",
         "globaldefine.h": "c",
-        "nvic.h": "c"
+        "nvic.h": "c",
+        "syscfg.h": "c",
+        "rcc.h": "c",
+        "interrupt.h": "c",
+        "exti.h": "c"
     }
 }

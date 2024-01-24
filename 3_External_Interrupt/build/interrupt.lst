@@ -1,0 +1,95 @@
+ARM GAS  C:\Users\leone\AppData\Local\Temp\cct0c32S.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"interrupt.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "peripheral/interrupt.c"
+  20              		.section	.text.EXTI15_10_IRQHandler,"ax",%progbits
+  21              		.align	1
+  22              		.global	EXTI15_10_IRQHandler
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	EXTI15_10_IRQHandler:
+  28              	.LFB0:
+   1:peripheral/interrupt.c **** #include "interrupt.h"
+   2:peripheral/interrupt.c **** 
+   3:peripheral/interrupt.c **** void EXTI15_10_IRQHandler(void)
+   4:peripheral/interrupt.c **** {
+  29              		.loc 1 4 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+   5:peripheral/interrupt.c ****   if ((EXTI->PR & (1<<13)) != 0)
+  34              		.loc 1 5 3 view .LVU1
+  35              		.loc 1 5 12 is_stmt 0 view .LVU2
+  36 0000 084B     		ldr	r3, .L3
+  37 0002 5B69     		ldr	r3, [r3, #20]
+  38              		.loc 1 5 6 view .LVU3
+  39 0004 13F4005F 		tst	r3, #8192
+  40 0008 0AD0     		beq	.L1
+   6:peripheral/interrupt.c ****   {
+   7:peripheral/interrupt.c ****     GPIOA->ODR   ^= (1<<5); 
+  41              		.loc 1 7 5 is_stmt 1 view .LVU4
+  42              		.loc 1 7 10 is_stmt 0 view .LVU5
+  43 000a 074A     		ldr	r2, .L3+4
+  44 000c 5369     		ldr	r3, [r2, #20]
+  45              		.loc 1 7 18 view .LVU6
+  46 000e 83F02003 		eor	r3, r3, #32
+  47 0012 5361     		str	r3, [r2, #20]
+   8:peripheral/interrupt.c ****     EXTI->PR     |= (1<<13); 
+  48              		.loc 1 8 5 is_stmt 1 view .LVU7
+  49              		.loc 1 8 9 is_stmt 0 view .LVU8
+  50 0014 A2F54442 		sub	r2, r2, #50176
+ARM GAS  C:\Users\leone\AppData\Local\Temp\cct0c32S.s 			page 2
+
+
+  51 0018 5369     		ldr	r3, [r2, #20]
+  52              		.loc 1 8 18 view .LVU9
+  53 001a 43F40053 		orr	r3, r3, #8192
+  54 001e 5361     		str	r3, [r2, #20]
+  55              	.L1:
+   9:peripheral/interrupt.c ****   } 
+  10:peripheral/interrupt.c **** }...
+  56              		.loc 1 10 1 view .LVU10
+  57 0020 7047     		bx	lr
+  58              	.L4:
+  59 0022 00BF     		.align	2
+  60              	.L3:
+  61 0024 003C0140 		.word	1073822720
+  62 0028 00000240 		.word	1073872896
+  63              		.cfi_endproc
+  64              	.LFE0:
+  66              		.text
+  67              	.Letext0:
+  68              		.file 2 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.2 Rel1/arm-none-eabi/include/ma
+  69              		.file 3 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.2 Rel1/arm-none-eabi/include/sy
+  70              		.file 4 "Inc/exti.h"
+  71              		.file 5 "Inc/gpio.h"
+ARM GAS  C:\Users\leone\AppData\Local\Temp\cct0c32S.s 			page 3
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 interrupt.c
+C:\Users\leone\AppData\Local\Temp\cct0c32S.s:21     .text.EXTI15_10_IRQHandler:00000000 $t
+C:\Users\leone\AppData\Local\Temp\cct0c32S.s:27     .text.EXTI15_10_IRQHandler:00000000 EXTI15_10_IRQHandler
+C:\Users\leone\AppData\Local\Temp\cct0c32S.s:61     .text.EXTI15_10_IRQHandler:00000024 $d
+
+NO UNDEFINED SYMBOLS

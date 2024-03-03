@@ -4,8 +4,6 @@
 #include "rcc.h"
 #include "syscfg.h"
 
-uint32_t button_state;
-
 int main(void)
 {
   RCC->AHB1ENR    |=  RCC_AHB1ENR_GPIOA_EN;                // Enable clock port A (Led)
@@ -23,5 +21,3 @@ int main(void)
 
   while (1);
 }
-
-void EXTI15_10_IRQHandler(void);

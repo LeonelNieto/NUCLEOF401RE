@@ -1,10 +1,5 @@
-build/main.o: Src/main.c Inc/interrupt.h Inc/exti.h Inc/globaldefine.h \
- Inc/gpio.h Inc/nvic.h Inc/irqn.h Inc/rcc.h Inc/syscfg.h
+build/main.o: Src/main.c Inc/interrupt.h Inc/nucleof401re.h \
+ Inc/globaldefine.h
 Inc/interrupt.h:
-Inc/exti.h:
+Inc/nucleof401re.h:
 Inc/globaldefine.h:
-Inc/gpio.h:
-Inc/nvic.h:
-Inc/irqn.h:
-Inc/rcc.h:
-Inc/syscfg.h:

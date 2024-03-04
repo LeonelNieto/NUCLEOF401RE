@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\leone\AppData\Local\Temp\ccBQ871y.s 			page 1
+ARM GAS  C:\Users\leone\AppData\Local\Temp\ccscFeO3.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -30,13 +30,10 @@ ARM GAS  C:\Users\leone\AppData\Local\Temp\ccBQ871y.s 			page 1
   28              	.LFB0:
    1:Src/main.c    **** #include <stdint.h>
    2:Src/main.c    **** #include "interrupt.h"
-   3:Src/main.c    **** #include "nvic.h"
-   4:Src/main.c    **** #include "rcc.h"
-   5:Src/main.c    **** #include "syscfg.h"
-   6:Src/main.c    **** 
-   7:Src/main.c    **** int main(void)
-   8:Src/main.c    **** {
-  29              		.loc 1 8 1 view -0
+   3:Src/main.c    **** 
+   4:Src/main.c    **** int main(void)
+   5:Src/main.c    **** {
+  29              		.loc 1 5 1 view -0
   30              		.cfi_startproc
   31              		@ Volatile: function does not return.
   32              		@ args = 0, pretend = 0, frame = 0
@@ -46,91 +43,91 @@ ARM GAS  C:\Users\leone\AppData\Local\Temp\ccBQ871y.s 			page 1
   36              		.cfi_def_cfa_offset 8
   37              		.cfi_offset 3, -8
   38              		.cfi_offset 14, -4
-   9:Src/main.c    ****   RCC->AHB1ENR    |=  RCC_AHB1ENR_GPIOA_EN;                // Enable clock port A (Led)
-  39              		.loc 1 9 3 view .LVU1
-  40              		.loc 1 9 6 is_stmt 0 view .LVU2
+   6:Src/main.c    ****   RCC->AHB1ENR    |=  RCC_AHB1ENR_GPIOA_EN;                // Enable clock port A (Led)
+  39              		.loc 1 6 3 view .LVU1
+  40              		.loc 1 6 6 is_stmt 0 view .LVU2
   41 0002 164B     		ldr	r3, .L4
   42 0004 1A6B     		ldr	r2, [r3, #48]
-  43              		.loc 1 9 19 view .LVU3
+  43              		.loc 1 6 19 view .LVU3
   44 0006 42F00102 		orr	r2, r2, #1
   45 000a 1A63     		str	r2, [r3, #48]
-  10:Src/main.c    ****   RCC->AHB1ENR    |=  RCC_AHB1ENR_GPIOC_EN;                // Enable clock port C (Button)
-  46              		.loc 1 10 3 is_stmt 1 view .LVU4
-  47              		.loc 1 10 6 is_stmt 0 view .LVU5
+   7:Src/main.c    ****   RCC->AHB1ENR    |=  RCC_AHB1ENR_GPIOC_EN;                // Enable clock port C (Button)
+  46              		.loc 1 7 3 is_stmt 1 view .LVU4
+  47              		.loc 1 7 6 is_stmt 0 view .LVU5
   48 000c 1A6B     		ldr	r2, [r3, #48]
-ARM GAS  C:\Users\leone\AppData\Local\Temp\ccBQ871y.s 			page 2
-
-
-  49              		.loc 1 10 19 view .LVU6
+  49              		.loc 1 7 19 view .LVU6
   50 000e 42F00402 		orr	r2, r2, #4
   51 0012 1A63     		str	r2, [r3, #48]
-  11:Src/main.c    ****   GPIOA->MODER    &= ~(GPIO_MODER_05_OUTPUT);              // Clen registers port A
-  52              		.loc 1 11 3 is_stmt 1 view .LVU7
-  53              		.loc 1 11 8 is_stmt 0 view .LVU8
+ARM GAS  C:\Users\leone\AppData\Local\Temp\ccscFeO3.s 			page 2
+
+
+   8:Src/main.c    ****   GPIOA->MODER    &= ~(GPIO_MODER_05_OUTPUT);              // Clen registers port A
+  52              		.loc 1 8 3 is_stmt 1 view .LVU7
+  53              		.loc 1 8 8 is_stmt 0 view .LVU8
   54 0014 124A     		ldr	r2, .L4+4
   55 0016 1168     		ldr	r1, [r2]
-  56              		.loc 1 11 19 view .LVU9
+  56              		.loc 1 8 19 view .LVU9
   57 0018 21F48061 		bic	r1, r1, #1024
   58 001c 1160     		str	r1, [r2]
-  12:Src/main.c    ****   GPIOA->MODER    |=  GPIO_MODER_05_OUTPUT;                // Set output pin 5
-  59              		.loc 1 12 3 is_stmt 1 view .LVU10
-  60              		.loc 1 12 8 is_stmt 0 view .LVU11
+   9:Src/main.c    ****   GPIOA->MODER    |=  GPIO_MODER_05_OUTPUT;                // Set output pin 5
+  59              		.loc 1 9 3 is_stmt 1 view .LVU10
+  60              		.loc 1 9 8 is_stmt 0 view .LVU11
   61 001e 1168     		ldr	r1, [r2]
-  62              		.loc 1 12 19 view .LVU12
+  62              		.loc 1 9 19 view .LVU12
   63 0020 41F48061 		orr	r1, r1, #1024
   64 0024 1160     		str	r1, [r2]
-  13:Src/main.c    ****   GPIOC->MODER    &= ~(GPIO_MODER_INPUT);                  // Clean resgister port C    
-  65              		.loc 1 13 3 is_stmt 1 view .LVU13
-  66              		.loc 1 13 8 is_stmt 0 view .LVU14
+  10:Src/main.c    ****   GPIOC->MODER    &= ~(GPIO_MODER_INPUT);                  // Clean resgister port C    
+  65              		.loc 1 10 3 is_stmt 1 view .LVU13
+  66              		.loc 1 10 8 is_stmt 0 view .LVU14
   67 0026 02F50062 		add	r2, r2, #2048
   68 002a 1168     		ldr	r1, [r2]
-  69              		.loc 1 13 19 view .LVU15
+  69              		.loc 1 10 19 view .LVU15
   70 002c 1160     		str	r1, [r2]
-  14:Src/main.c    **** 
-  15:Src/main.c    ****   RCC->APB2ENR    |= RCC_APB2ENR_SYSCFGEN_ClockEnabled;    // Enable clock System configuration
-  71              		.loc 1 15 3 is_stmt 1 view .LVU16
-  72              		.loc 1 15 6 is_stmt 0 view .LVU17
+  11:Src/main.c    **** 
+  12:Src/main.c    ****   RCC->APB2ENR    |= RCC_APB2ENR_SYSCFGEN_ClockEnabled;    // Enable clock System configuration
+  71              		.loc 1 12 3 is_stmt 1 view .LVU16
+  72              		.loc 1 12 6 is_stmt 0 view .LVU17
   73 002e 5A6C     		ldr	r2, [r3, #68]
-  74              		.loc 1 15 19 view .LVU18
+  74              		.loc 1 12 19 view .LVU18
   75 0030 42F48042 		orr	r2, r2, #16384
   76 0034 5A64     		str	r2, [r3, #68]
-  16:Src/main.c    ****   SYSCFG->EXTICR4 |= SYSCFG_EXTICR4_PC13;                  // Set the interrupt in PC13
-  77              		.loc 1 16 3 is_stmt 1 view .LVU19
-  78              		.loc 1 16 9 is_stmt 0 view .LVU20
+  13:Src/main.c    ****   SYSCFG->EXTICR4 |= SYSCFG_EXTICR4_PC13;                  // Set the interrupt in PC13
+  77              		.loc 1 13 3 is_stmt 1 view .LVU19
+  78              		.loc 1 13 9 is_stmt 0 view .LVU20
   79 0036 0B4A     		ldr	r2, .L4+8
   80 0038 5369     		ldr	r3, [r2, #20]
-  81              		.loc 1 16 19 view .LVU21
+  81              		.loc 1 13 19 view .LVU21
   82 003a 43F02003 		orr	r3, r3, #32
   83 003e 5361     		str	r3, [r2, #20]
-  17:Src/main.c    ****   EXTI->IMR       |= EXTI_IMR_MR13_ISNOTMASKED;
-  84              		.loc 1 17 3 is_stmt 1 view .LVU22
-  85              		.loc 1 17 7 is_stmt 0 view .LVU23
+  14:Src/main.c    ****   EXTI->IMR       |= EXTI_IMR_MR13_ISNOTMASKED;            // Enable external interruption PC13
+  84              		.loc 1 14 3 is_stmt 1 view .LVU22
+  85              		.loc 1 14 7 is_stmt 0 view .LVU23
   86 0040 094B     		ldr	r3, .L4+12
   87 0042 1A68     		ldr	r2, [r3]
-  88              		.loc 1 17 19 view .LVU24
+  88              		.loc 1 14 19 view .LVU24
   89 0044 42F40052 		orr	r2, r2, #8192
   90 0048 1A60     		str	r2, [r3]
-  18:Src/main.c    ****   EXTI->FTSR      |= EXTI_FTSR_TR13_FALLING_TRIGGER_EN;
-  91              		.loc 1 18 3 is_stmt 1 view .LVU25
-  92              		.loc 1 18 7 is_stmt 0 view .LVU26
+  15:Src/main.c    ****   EXTI->FTSR      |= EXTI_FTSR_TR13_FALLING_TRIGGER_EN;    // Set the falling trigger enable 
+  91              		.loc 1 15 3 is_stmt 1 view .LVU25
+  92              		.loc 1 15 7 is_stmt 0 view .LVU26
   93 004a DA68     		ldr	r2, [r3, #12]
-  94              		.loc 1 18 19 view .LVU27
+  94              		.loc 1 15 19 view .LVU27
   95 004c 42F40052 		orr	r2, r2, #8192
   96 0050 DA60     		str	r2, [r3, #12]
-  19:Src/main.c    **** 
-ARM GAS  C:\Users\leone\AppData\Local\Temp\ccBQ871y.s 			page 3
-
-
-  20:Src/main.c    ****   enableInterruptIRQn(EXTI15_10_IRQn);
-  97              		.loc 1 20 3 is_stmt 1 view .LVU28
+  16:Src/main.c    **** 
+  17:Src/main.c    ****   enableInterruptIRQn(EXTI15_10_IRQn);
+  97              		.loc 1 17 3 is_stmt 1 view .LVU28
   98 0052 2820     		movs	r0, #40
+ARM GAS  C:\Users\leone\AppData\Local\Temp\ccscFeO3.s 			page 3
+
+
   99 0054 FFF7FEFF 		bl	enableInterruptIRQn
  100              	.LVL0:
  101              	.L2:
-  21:Src/main.c    **** 
-  22:Src/main.c    ****   while (1);
- 102              		.loc 1 22 3 view .LVU29
- 103              		.loc 1 22 9 view .LVU30
+  18:Src/main.c    **** 
+  19:Src/main.c    ****   while (1);
+ 102              		.loc 1 19 3 view .LVU29
+ 103              		.loc 1 19 9 view .LVU30
  104 0058 FEE7     		b	.L2
  105              	.L5:
  106 005a 00BF     		.align	2
@@ -145,20 +142,16 @@ ARM GAS  C:\Users\leone\AppData\Local\Temp\ccBQ871y.s 			page 1
  116              	.Letext0:
  117              		.file 2 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.2 Rel1/arm-none-eabi/include/ma
  118              		.file 3 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.2 Rel1/arm-none-eabi/include/sy
- 119              		.file 4 "Inc/exti.h"
- 120              		.file 5 "Inc/gpio.h"
- 121              		.file 6 "Inc/irqn.h"
- 122              		.file 7 "Inc/rcc.h"
- 123              		.file 8 "Inc/syscfg.h"
- 124              		.file 9 "Inc/nvic.h"
-ARM GAS  C:\Users\leone\AppData\Local\Temp\ccBQ871y.s 			page 4
+ 119              		.file 4 "Inc/nucleof401re.h"
+ 120              		.file 5 "Inc/interrupt.h"
+ARM GAS  C:\Users\leone\AppData\Local\Temp\ccscFeO3.s 			page 4
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-C:\Users\leone\AppData\Local\Temp\ccBQ871y.s:21     .text.main:00000000 $t
-C:\Users\leone\AppData\Local\Temp\ccBQ871y.s:27     .text.main:00000000 main
-C:\Users\leone\AppData\Local\Temp\ccBQ871y.s:108    .text.main:0000005c $d
+C:\Users\leone\AppData\Local\Temp\ccscFeO3.s:21     .text.main:00000000 $t
+C:\Users\leone\AppData\Local\Temp\ccscFeO3.s:27     .text.main:00000000 main
+C:\Users\leone\AppData\Local\Temp\ccscFeO3.s:108    .text.main:0000005c $d
 
 UNDEFINED SYMBOLS
 enableInterruptIRQn

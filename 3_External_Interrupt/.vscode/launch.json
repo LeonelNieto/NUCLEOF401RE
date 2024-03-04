@@ -2,7 +2,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug with OpenOCD",
+            "name": "Debug cortex-arm",
             "cwd": "${workspaceFolder}",
             "executable": "${workspaceRoot}/build/${workspaceFolderBasename}.elf",
             "request": "launch",

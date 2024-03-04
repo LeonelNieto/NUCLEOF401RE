@@ -16,7 +16,7 @@ typedef struct {
     __IO uint32_t AFRL;             // Offset 0x20
     __IO uint32_t AFRH;             // Offset 0x24
 } GPIO_t;
- 
+
 #define GPIOA ((GPIO_t *)(GPIOA_BASE_ADDRESS))
 #define GPIOB ((GPIO_t *)(GPIOB_BASE_ADDRESS))
 #define GPIOC ((GPIO_t *)(GPIOC_BASE_ADDRESS))

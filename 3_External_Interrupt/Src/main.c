@@ -1,8 +1,5 @@
 #include <stdint.h>
 #include "interrupt.h"
-#include "nvic.h"
-#include "rcc.h"
-#include "syscfg.h"
 
 int main(void)
 {
@@ -14,8 +11,8 @@ int main(void)
 
   RCC->APB2ENR    |= RCC_APB2ENR_SYSCFGEN_ClockEnabled;    // Enable clock System configuration
   SYSCFG->EXTICR4 |= SYSCFG_EXTICR4_PC13;                  // Set the interrupt in PC13
-  EXTI->IMR       |= EXTI_IMR_MR13_ISNOTMASKED;
-  EXTI->FTSR      |= EXTI_FTSR_TR13_FALLING_TRIGGER_EN;
+  EXTI->IMR       |= EXTI_IMR_MR13_ISNOTMASKED;            // Enable external interruption PC13
+  EXTI->FTSR      |= EXTI_FTSR_TR13_FALLING_TRIGGER_EN;    // Set the falling trigger enable 
 
   enableInterruptIRQn(EXTI15_10_IRQn);
 

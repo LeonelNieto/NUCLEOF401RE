@@ -1,6 +1,6 @@
-build/interrupt.o: peripheral/interrupt.c Inc/interrupt.h Inc/exti.h \
- Inc/globaldefine.h Inc/gpio.h
+build/interrupt.o: peripheral/interrupt.c Inc/interrupt.h \
+ Inc/nucleof401re.h Inc/globaldefine.h Inc/nucleof401re.h
 Inc/interrupt.h:
-Inc/exti.h:
+Inc/nucleof401re.h:
 Inc/globaldefine.h:
-Inc/gpio.h:
+Inc/nucleof401re.h:

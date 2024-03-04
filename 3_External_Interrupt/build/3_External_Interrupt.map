@@ -120,9 +120,6 @@ Discarded input sections
  .text          0x00000000        0x0 build/interrupt.o
  .data          0x00000000        0x0 build/interrupt.o
  .bss           0x00000000        0x0 build/interrupt.o
- .text          0x00000000        0x0 build/nvic.o
- .data          0x00000000        0x0 build/nvic.o
- .bss           0x00000000        0x0 build/nvic.o
  .text          0x00000000       0x14 build/startup_stm32f401retx.o
  .data          0x00000000        0x0 build/startup_stm32f401retx.o
  .bss           0x00000000        0x0 build/startup_stm32f401retx.o
@@ -369,7 +366,6 @@ LOAD build/main.o
 LOAD build/syscalls.o
 LOAD build/sysmem.o
 LOAD build/interrupt.o
-LOAD build/nvic.o
 LOAD build/startup_stm32f401retx.o
 LOAD C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libc_nano.a
 LOAD C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libm.a
@@ -411,12 +407,12 @@ LOAD C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.2 Rel1/bin/../lib
                 0x08000220                main
  .text.turnOnOffLedPA5
                 0x0800028c       0x10 build/interrupt.o
- .text.EXTI15_10_IRQHandler
-                0x0800029c       0x24 build/interrupt.o
-                0x0800029c                EXTI15_10_IRQHandler
  .text.enableInterruptIRQn
-                0x080002c0       0x18 build/nvic.o
-                0x080002c0                enableInterruptIRQn
+                0x0800029c       0x18 build/interrupt.o
+                0x0800029c                enableInterruptIRQn
+ .text.EXTI15_10_IRQHandler
+                0x080002b4       0x24 build/interrupt.o
+                0x080002b4                EXTI15_10_IRQHandler
  .text.Reset_Handler
                 0x080002d8       0x50 build/startup_stm32f401retx.o
                 0x080002d8                Reset_Handler
@@ -626,78 +622,66 @@ LOAD C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.2 Rel1/bin/../lib
  .ARM.attributes
                 0x0000008a       0x34 build/interrupt.o
  .ARM.attributes
-                0x000000be       0x34 build/nvic.o
+                0x000000be       0x21 build/startup_stm32f401retx.o
  .ARM.attributes
-                0x000000f2       0x21 build/startup_stm32f401retx.o
+                0x000000df       0x34 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-init.o)
  .ARM.attributes
-                0x00000113       0x34 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-init.o)
+                0x00000113       0x34 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard/crtend.o
  .ARM.attributes
-                0x00000147       0x34 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard/crtend.o
- .ARM.attributes
-                0x0000017b       0x22 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard/crtn.o
+                0x00000147       0x22 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard/crtn.o
 OUTPUT(build/3_External_Interrupt.elf elf32-littlearm)
 LOAD linker stubs
 LOAD C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libc.a
 LOAD C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libm.a
 LOAD C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libgcc.a
 
-.debug_info     0x00000000      0xcef
+.debug_info     0x00000000      0xc62
  .debug_info    0x00000000      0x68e build/main.o
- .debug_info    0x0000068e      0x1e2 build/interrupt.o
- .debug_info    0x00000870      0x44f build/nvic.o
- .debug_info    0x00000cbf       0x30 build/startup_stm32f401retx.o
+ .debug_info    0x0000068e      0x5a4 build/interrupt.o
+ .debug_info    0x00000c32       0x30 build/startup_stm32f401retx.o
 
-.debug_abbrev   0x00000000      0x2ad
+.debug_abbrev   0x00000000      0x249
  .debug_abbrev  0x00000000       0xfb build/main.o
- .debug_abbrev  0x000000fb       0xb2 build/interrupt.o
- .debug_abbrev  0x000001ad       0xe3 build/nvic.o
- .debug_abbrev  0x00000290       0x1d build/startup_stm32f401retx.o
+ .debug_abbrev  0x000000fb      0x131 build/interrupt.o
+ .debug_abbrev  0x0000022c       0x1d build/startup_stm32f401retx.o
 
 .debug_loc      0x00000000       0x6b
  .debug_loc     0x00000000       0x20 build/main.o
- .debug_loc     0x00000020       0x20 build/interrupt.o
- .debug_loc     0x00000040       0x2b build/nvic.o
+ .debug_loc     0x00000020       0x4b build/interrupt.o
 
-.debug_aranges  0x00000000       0x90
+.debug_aranges  0x00000000       0x78
  .debug_aranges
                 0x00000000       0x20 build/main.o
  .debug_aranges
-                0x00000020       0x28 build/interrupt.o
+                0x00000020       0x30 build/interrupt.o
  .debug_aranges
-                0x00000048       0x20 build/nvic.o
- .debug_aranges
-                0x00000068       0x28 build/startup_stm32f401retx.o
+                0x00000050       0x28 build/startup_stm32f401retx.o
 
-.debug_ranges   0x00000000       0x58
+.debug_ranges   0x00000000       0x50
  .debug_ranges  0x00000000       0x10 build/main.o
- .debug_ranges  0x00000010       0x18 build/interrupt.o
- .debug_ranges  0x00000028       0x10 build/nvic.o
- .debug_ranges  0x00000038       0x20 build/startup_stm32f401retx.o
+ .debug_ranges  0x00000010       0x20 build/interrupt.o
+ .debug_ranges  0x00000030       0x20 build/startup_stm32f401retx.o
 
-.debug_line     0x00000000      0x4f6
- .debug_line    0x00000000      0x1c0 build/main.o
- .debug_line    0x000001c0      0x171 build/interrupt.o
- .debug_line    0x00000331      0x147 build/nvic.o
- .debug_line    0x00000478       0x7e build/startup_stm32f401retx.o
+.debug_line     0x00000000      0x3b7
+ .debug_line    0x00000000      0x1a4 build/main.o
+ .debug_line    0x000001a4      0x195 build/interrupt.o
+ .debug_line    0x00000339       0x7e build/startup_stm32f401retx.o
 
-.debug_str      0x00000000      0x8a6
- .debug_str     0x00000000      0x8a6 build/main.o
+.debug_str      0x00000000      0x894
+ .debug_str     0x00000000      0x894 build/main.o
                                 0x7f9 (size before relaxing)
- .debug_str     0x000008a6      0x1e8 build/interrupt.o
- .debug_str     0x000008a6      0x700 build/nvic.o
- .debug_str     0x000008a6       0x68 build/startup_stm32f401retx.o
+ .debug_str     0x00000894      0x777 build/interrupt.o
+ .debug_str     0x00000894       0x68 build/startup_stm32f401retx.o
 
 .comment        0x00000000       0x44
  .comment       0x00000000       0x44 build/main.o
                                  0x45 (size before relaxing)
  .comment       0x00000044       0x45 build/interrupt.o
- .comment       0x00000044       0x45 build/nvic.o
 
-.debug_frame    0x00000000       0xac
+.debug_frame    0x00000000       0x9c
  .debug_frame   0x00000000       0x28 build/main.o
- .debug_frame   0x00000028       0x38 build/interrupt.o
- .debug_frame   0x00000060       0x20 build/nvic.o
- .debug_frame   0x00000080       0x2c C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-init.o)
+ .debug_frame   0x00000028       0x48 build/interrupt.o
+ .debug_frame   0x00000070       0x2c C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-init.o)
 
 Cross Reference Table
 
@@ -920,7 +904,7 @@ _write                                            build/syscalls.o
 _write_r                                          C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-writer.o)
                                                   C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-stdio.o)
 atexit                                            C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard/crt0.o
-enableInterruptIRQn                               build/nvic.o
+enableInterruptIRQn                               build/interrupt.o
                                                   build/main.o
 environ                                           build/syscalls.o
 errno                                             C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-reent.o)

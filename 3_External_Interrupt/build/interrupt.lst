@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\leone\AppData\Local\Temp\ccUJq5iT.s 			page 1
+ARM GAS  C:\Users\leone\AppData\Local\Temp\ccJ2Y0iU.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -26,114 +26,163 @@ ARM GAS  C:\Users\leone\AppData\Local\Temp\ccUJq5iT.s 			page 1
   23              		.thumb
   24              		.thumb_func
   26              	turnOnOffLedPA5:
-  27              	.LFB0:
+  27              	.LFB1:
    1:peripheral/interrupt.c **** #include "interrupt.h"
-   2:peripheral/interrupt.c **** 
-   3:peripheral/interrupt.c **** static void turnOnOffLedPA5(void)
-   4:peripheral/interrupt.c **** {
-  28              		.loc 1 4 1 view -0
+   2:peripheral/interrupt.c **** #include "nucleof401re.h"
+   3:peripheral/interrupt.c **** 
+   4:peripheral/interrupt.c **** void enableInterruptIRQn(IRQn_t IRQn)
+   5:peripheral/interrupt.c **** {
+   6:peripheral/interrupt.c ****      NVIC->ISER[(((uint32_t)IRQn) >> 5UL)] = (uint32_t)(1UL << (((uint32_t)IRQn) & 0x1FUL));
+   7:peripheral/interrupt.c **** }
+   8:peripheral/interrupt.c **** 
+   9:peripheral/interrupt.c **** static void turnOnOffLedPA5(void)
+  10:peripheral/interrupt.c **** {
+  28              		.loc 1 10 1 view -0
   29              		.cfi_startproc
   30              		@ args = 0, pretend = 0, frame = 0
   31              		@ frame_needed = 0, uses_anonymous_args = 0
   32              		@ link register save eliminated.
-   5:peripheral/interrupt.c ****     GPIOA->ODR   ^= (1<<5); 
-  33              		.loc 1 5 5 view .LVU1
-  34              		.loc 1 5 10 is_stmt 0 view .LVU2
+  11:peripheral/interrupt.c ****     GPIOA->ODR   ^= (1<<5);           // Togle state of bit 
+  33              		.loc 1 11 5 view .LVU1
+  34              		.loc 1 11 10 is_stmt 0 view .LVU2
   35 0000 024A     		ldr	r2, .L2
   36 0002 5369     		ldr	r3, [r2, #20]
-  37              		.loc 1 5 18 view .LVU3
+  37              		.loc 1 11 18 view .LVU3
   38 0004 83F02003 		eor	r3, r3, #32
   39 0008 5361     		str	r3, [r2, #20]
-   6:peripheral/interrupt.c **** }
-  40              		.loc 1 6 1 view .LVU4
+  12:peripheral/interrupt.c **** }
+  40              		.loc 1 12 1 view .LVU4
   41 000a 7047     		bx	lr
   42              	.L3:
   43              		.align	2
   44              	.L2:
   45 000c 00000240 		.word	1073872896
   46              		.cfi_endproc
-  47              	.LFE0:
-  49              		.section	.text.EXTI15_10_IRQHandler,"ax",%progbits
+ARM GAS  C:\Users\leone\AppData\Local\Temp\ccJ2Y0iU.s 			page 2
+
+
+  47              	.LFE1:
+  49              		.section	.text.enableInterruptIRQn,"ax",%progbits
   50              		.align	1
-  51              		.global	EXTI15_10_IRQHandler
+  51              		.global	enableInterruptIRQn
   52              		.syntax unified
   53              		.thumb
-ARM GAS  C:\Users\leone\AppData\Local\Temp\ccUJq5iT.s 			page 2
-
-
   54              		.thumb_func
-  56              	EXTI15_10_IRQHandler:
-  57              	.LFB1:
+  56              	enableInterruptIRQn:
+  57              	.LVL0:
+  58              	.LFB0:
+   5:peripheral/interrupt.c ****      NVIC->ISER[(((uint32_t)IRQn) >> 5UL)] = (uint32_t)(1UL << (((uint32_t)IRQn) & 0x1FUL));
+  59              		.loc 1 5 1 is_stmt 1 view -0
+  60              		.cfi_startproc
+  61              		@ args = 0, pretend = 0, frame = 0
+  62              		@ frame_needed = 0, uses_anonymous_args = 0
+  63              		@ link register save eliminated.
+   6:peripheral/interrupt.c **** }
+  64              		.loc 1 6 6 view .LVU6
+   6:peripheral/interrupt.c **** }
+  65              		.loc 1 6 82 is_stmt 0 view .LVU7
+  66 0000 00F01F02 		and	r2, r0, #31
+   6:peripheral/interrupt.c **** }
+  67              		.loc 1 6 35 view .LVU8
+  68 0004 4009     		lsrs	r0, r0, #5
+  69              	.LVL1:
+   6:peripheral/interrupt.c **** }
+  70              		.loc 1 6 46 view .LVU9
+  71 0006 0123     		movs	r3, #1
+  72 0008 9340     		lsls	r3, r3, r2
+   6:peripheral/interrupt.c **** }
+  73              		.loc 1 6 44 view .LVU10
+  74 000a 024A     		ldr	r2, .L5
+  75 000c 42F82030 		str	r3, [r2, r0, lsl #2]
    7:peripheral/interrupt.c **** 
-   8:peripheral/interrupt.c **** void EXTI15_10_IRQHandler(void)
-   9:peripheral/interrupt.c **** {
-  58              		.loc 1 9 1 is_stmt 1 view -0
-  59              		.cfi_startproc
-  60              		@ args = 0, pretend = 0, frame = 0
-  61              		@ frame_needed = 0, uses_anonymous_args = 0
-  62 0000 08B5     		push	{r3, lr}
-  63              	.LCFI0:
-  64              		.cfi_def_cfa_offset 8
-  65              		.cfi_offset 3, -8
-  66              		.cfi_offset 14, -4
-  10:peripheral/interrupt.c ****   if ((EXTI->PR & (1<<13)) != 0)
-  67              		.loc 1 10 3 view .LVU6
-  68              		.loc 1 10 12 is_stmt 0 view .LVU7
-  69 0002 074B     		ldr	r3, .L8
-  70 0004 5B69     		ldr	r3, [r3, #20]
-  71              		.loc 1 10 6 view .LVU8
-  72 0006 13F4005F 		tst	r3, #8192
-  73 000a 00D1     		bne	.L7
-  74              	.L4:
-  11:peripheral/interrupt.c ****   {
-  12:peripheral/interrupt.c ****     turnOnOffLedPA5();
-  13:peripheral/interrupt.c ****     EXTI->PR     |= (1<<13); 
-  14:peripheral/interrupt.c ****   } 
-  15:peripheral/interrupt.c **** }
-  75              		.loc 1 15 1 view .LVU9
-  76 000c 08BD     		pop	{r3, pc}
-  77              	.L7:
-  12:peripheral/interrupt.c ****     EXTI->PR     |= (1<<13); 
-  78              		.loc 1 12 5 is_stmt 1 view .LVU10
-  79 000e FFF7FEFF 		bl	turnOnOffLedPA5
-  80              	.LVL0:
-  13:peripheral/interrupt.c ****   } 
-  81              		.loc 1 13 5 view .LVU11
-  13:peripheral/interrupt.c ****   } 
-  82              		.loc 1 13 9 is_stmt 0 view .LVU12
-  83 0012 034A     		ldr	r2, .L8
-  84 0014 5369     		ldr	r3, [r2, #20]
-  13:peripheral/interrupt.c ****   } 
-  85              		.loc 1 13 18 view .LVU13
-  86 0016 43F40053 		orr	r3, r3, #8192
-  87 001a 5361     		str	r3, [r2, #20]
-  88              		.loc 1 15 1 view .LVU14
-  89 001c F6E7     		b	.L4
-  90              	.L9:
-  91 001e 00BF     		.align	2
-  92              	.L8:
-  93 0020 003C0140 		.word	1073822720
-  94              		.cfi_endproc
-  95              	.LFE1:
-  97              		.text
-  98              	.Letext0:
-  99              		.file 2 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.2 Rel1/arm-none-eabi/include/ma
-ARM GAS  C:\Users\leone\AppData\Local\Temp\ccUJq5iT.s 			page 3
+  76              		.loc 1 7 1 view .LVU11
+  77 0010 7047     		bx	lr
+  78              	.L6:
+  79 0012 00BF     		.align	2
+  80              	.L5:
+  81 0014 00E100E0 		.word	-536813312
+  82              		.cfi_endproc
+  83              	.LFE0:
+  85              		.section	.text.EXTI15_10_IRQHandler,"ax",%progbits
+  86              		.align	1
+  87              		.global	EXTI15_10_IRQHandler
+  88              		.syntax unified
+  89              		.thumb
+  90              		.thumb_func
+  92              	EXTI15_10_IRQHandler:
+  93              	.LFB2:
+  13:peripheral/interrupt.c **** 
+  14:peripheral/interrupt.c **** void EXTI15_10_IRQHandler(void)
+  15:peripheral/interrupt.c **** {
+  94              		.loc 1 15 1 is_stmt 1 view -0
+  95              		.cfi_startproc
+  96              		@ args = 0, pretend = 0, frame = 0
+  97              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\leone\AppData\Local\Temp\ccJ2Y0iU.s 			page 3
 
 
- 100              		.file 3 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.2 Rel1/arm-none-eabi/include/sy
- 101              		.file 4 "Inc/exti.h"
- 102              		.file 5 "Inc/gpio.h"
-ARM GAS  C:\Users\leone\AppData\Local\Temp\ccUJq5iT.s 			page 4
+  98 0000 08B5     		push	{r3, lr}
+  99              	.LCFI0:
+ 100              		.cfi_def_cfa_offset 8
+ 101              		.cfi_offset 3, -8
+ 102              		.cfi_offset 14, -4
+  16:peripheral/interrupt.c ****   if ((EXTI->PR & (1<<13)) != 0)    // Verify if interrupt of button was set
+ 103              		.loc 1 16 3 view .LVU13
+ 104              		.loc 1 16 12 is_stmt 0 view .LVU14
+ 105 0002 074B     		ldr	r3, .L11
+ 106 0004 5B69     		ldr	r3, [r3, #20]
+ 107              		.loc 1 16 6 view .LVU15
+ 108 0006 13F4005F 		tst	r3, #8192
+ 109 000a 00D1     		bne	.L10
+ 110              	.L7:
+  17:peripheral/interrupt.c ****   {
+  18:peripheral/interrupt.c ****     turnOnOffLedPA5();
+  19:peripheral/interrupt.c ****     EXTI->PR     |= (1<<13);        // clear the flag interrupcion
+  20:peripheral/interrupt.c ****   } 
+  21:peripheral/interrupt.c **** }
+ 111              		.loc 1 21 1 view .LVU16
+ 112 000c 08BD     		pop	{r3, pc}
+ 113              	.L10:
+  18:peripheral/interrupt.c ****     EXTI->PR     |= (1<<13);        // clear the flag interrupcion
+ 114              		.loc 1 18 5 is_stmt 1 view .LVU17
+ 115 000e FFF7FEFF 		bl	turnOnOffLedPA5
+ 116              	.LVL2:
+  19:peripheral/interrupt.c ****   } 
+ 117              		.loc 1 19 5 view .LVU18
+  19:peripheral/interrupt.c ****   } 
+ 118              		.loc 1 19 9 is_stmt 0 view .LVU19
+ 119 0012 034A     		ldr	r2, .L11
+ 120 0014 5369     		ldr	r3, [r2, #20]
+  19:peripheral/interrupt.c ****   } 
+ 121              		.loc 1 19 18 view .LVU20
+ 122 0016 43F40053 		orr	r3, r3, #8192
+ 123 001a 5361     		str	r3, [r2, #20]
+ 124              		.loc 1 21 1 view .LVU21
+ 125 001c F6E7     		b	.L7
+ 126              	.L12:
+ 127 001e 00BF     		.align	2
+ 128              	.L11:
+ 129 0020 003C0140 		.word	1073822720
+ 130              		.cfi_endproc
+ 131              	.LFE2:
+ 133              		.text
+ 134              	.Letext0:
+ 135              		.file 2 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.2 Rel1/arm-none-eabi/include/ma
+ 136              		.file 3 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.2 Rel1/arm-none-eabi/include/sy
+ 137              		.file 4 "Inc/nucleof401re.h"
+ARM GAS  C:\Users\leone\AppData\Local\Temp\ccJ2Y0iU.s 			page 4
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 interrupt.c
-C:\Users\leone\AppData\Local\Temp\ccUJq5iT.s:21     .text.turnOnOffLedPA5:00000000 $t
-C:\Users\leone\AppData\Local\Temp\ccUJq5iT.s:26     .text.turnOnOffLedPA5:00000000 turnOnOffLedPA5
-C:\Users\leone\AppData\Local\Temp\ccUJq5iT.s:45     .text.turnOnOffLedPA5:0000000c $d
-C:\Users\leone\AppData\Local\Temp\ccUJq5iT.s:50     .text.EXTI15_10_IRQHandler:00000000 $t
-C:\Users\leone\AppData\Local\Temp\ccUJq5iT.s:56     .text.EXTI15_10_IRQHandler:00000000 EXTI15_10_IRQHandler
-C:\Users\leone\AppData\Local\Temp\ccUJq5iT.s:93     .text.EXTI15_10_IRQHandler:00000020 $d
+C:\Users\leone\AppData\Local\Temp\ccJ2Y0iU.s:21     .text.turnOnOffLedPA5:00000000 $t
+C:\Users\leone\AppData\Local\Temp\ccJ2Y0iU.s:26     .text.turnOnOffLedPA5:00000000 turnOnOffLedPA5
+C:\Users\leone\AppData\Local\Temp\ccJ2Y0iU.s:45     .text.turnOnOffLedPA5:0000000c $d
+C:\Users\leone\AppData\Local\Temp\ccJ2Y0iU.s:50     .text.enableInterruptIRQn:00000000 $t
+C:\Users\leone\AppData\Local\Temp\ccJ2Y0iU.s:56     .text.enableInterruptIRQn:00000000 enableInterruptIRQn
+C:\Users\leone\AppData\Local\Temp\ccJ2Y0iU.s:81     .text.enableInterruptIRQn:00000014 $d
+C:\Users\leone\AppData\Local\Temp\ccJ2Y0iU.s:86     .text.EXTI15_10_IRQHandler:00000000 $t
+C:\Users\leone\AppData\Local\Temp\ccJ2Y0iU.s:92     .text.EXTI15_10_IRQHandler:00000000 EXTI15_10_IRQHandler
+C:\Users\leone\AppData\Local\Temp\ccJ2Y0iU.s:129    .text.EXTI15_10_IRQHandler:00000020 $d
 
 NO UNDEFINED SYMBOLS

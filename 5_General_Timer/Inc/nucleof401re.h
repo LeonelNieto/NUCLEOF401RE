@@ -16,6 +16,7 @@ typedef struct
     __IO uint32_t SWIER;       // Offset 0x10
     __IO uint32_t PR;          // Offset 0x14
 } EXTI_t;
+
 #define EXTI ((EXTI_t *)(EXTI_BASE_ADDRESS))
 
 
@@ -34,6 +35,7 @@ typedef struct {
     __IO uint32_t AFRL;             // Offset 0x20
     __IO uint32_t AFRH;             // Offset 0x24
 } GPIO_t;
+
 #define GPIOA ((GPIO_t *)(GPIOA_BASE_ADDRESS))
 #define GPIOB ((GPIO_t *)(GPIOB_BASE_ADDRESS))
 #define GPIOC ((GPIO_t *)(GPIOC_BASE_ADDRESS))
@@ -158,6 +160,7 @@ typedef struct
          uint32_t RESERVED5[644];
     __IO uint32_t STIR;               // Offset: 0xE00 ( /W)  Software Trigger Interrupt Register */
 }  NVIC_t;
+
 #define NVIC ((NVIC_t *)(NVIC_BASE_ADDRESS))
 
 
@@ -194,6 +197,7 @@ typedef struct {
 	__IO uint32_t PLLI2SCFGR;	// Offset 0x84
 	__IO uint32_t DCKCFGR;		// Offset 0x8C
 } RCC_t;
+
 #define RCC ((RCC_t *)(RCC_BASE_ADDRESS))
 
 // ###################################################################//
@@ -210,8 +214,12 @@ typedef struct
     uint32_t RESERVADO0[2];         // Offset 0x18-0x1C
     __IO uint32_t CMPCR;            // Offset 0x20
 } SYSCFG_t;
+
 #define SYSCFG ((SYSCFG_t *)(SYSCFG_BASE_ADDRESS))
 
+// ###################################################################//
+//                            SYSTICK                                 //
+// ###################################################################//
 typedef struct 
 {
     __IO uint32_t CSR;              // Offset 0x00 Control and Status Register
@@ -219,7 +227,46 @@ typedef struct
     __IO uint32_t CVR;              // Offset 0x08 Current Value Register
     __I  uint32_t CALIB;            // Offset 0x08 Calibration Value Register
 } SysTick_t;
+
 #define SysTick ((SysTick_t *)(SYSTICK_BASE_ADDRESS))
+
+// ###################################################################//
+//                                TIM                                 //
+// ###################################################################//
+
+typedef struct 
+{
+    __IO uint32_t CR1;             // Offset 0x00 control register 1
+    __IO uint32_t CR2;             // Offset 0x04 control register 2
+    __IO uint32_t SMCR;            // Offset 0x08 slave mode control register
+    __IO uint32_t DIER;            // Offset 0x0C DMA/Interrupt enable register
+    __IO uint32_t SR;              // Offset 0x10 status register
+    __IO uint32_t EGR;             // Offset 0x14 event generation register
+    __IO uint32_t CCMR1;           // Offset 0x18 capture/compare mode register 1
+    __IO uint32_t CCMR2;           // Offset 0x1C capture/compare mode register 2
+    __IO uint32_t CCER;            // Offset 0x20 capture/compare enable register
+    __IO uint32_t CNT;             // Offset 0x24 counter
+    __IO uint32_t PSC;             // Offset 0x28 prescaler
+    __IO uint32_t ARR;             // Offset 0x2C auto-reload register
+         uint32_t RESERVADO0;      // Offset 0x30
+    __IO uint32_t CCR1;            // Offset 0x34 capture/compare register 1
+    __IO uint32_t CCR2;            // Offset 0x38 capture/compare register 2
+    __IO uint32_t CCR3;            // Offset 0x3C capture/compare register 3
+    __IO uint32_t CCR4;            // Offset 0x40 capture/compare register 4
+         uint32_t RESERVADO1;      // Offset 0x44
+    __IO uint32_t DCR;             // Offset 0x48 control register
+    __IO uint32_t DMAR;            // Offset 0x4C address for full transfer
+    __IO uint32_t OR;              // Offset 0x50 option register
+} TIM_t;
+
+#define TIM1  ((TIM_t *)(TIM1_BASE_ADDRESS))
+#define TIM2  ((TIM_t *)(TIM2_BASE_ADDRESS))
+#define TIM3  ((TIM_t *)(TIM3_BASE_ADDRESS))
+#define TIM4  ((TIM_t *)(TIM4_BASE_ADDRESS))
+#define TIM5  ((TIM_t *)(TIM5_BASE_ADDRESS))
+#define TIM9  ((TIM_t *)(TIM9_BASE_ADDRESS))
+#define TIM10 ((TIM_t *)(TIM10_BASE_ADDRESS))
+#define TIM11 ((TIM_t *)(TIM11_BASE_ADDRESS))
 
 
 #endif //NUCLEOF401RE_H

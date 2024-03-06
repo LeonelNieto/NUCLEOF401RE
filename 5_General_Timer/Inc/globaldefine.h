@@ -187,3 +187,15 @@
 #define SYSTICK_CSR_ENABLE                      (1U <<  0)
 #define SYSTICK_CSR_CLKSRC_INTERNAL             (1U <<  2)
 #define SYSTICK_CSR_COUNTFLAG                   (1U << 16)
+
+// ################################################################# //
+//                                TIM                                //
+// ################################################################# //
+#define TIM1_BASE_ADDRESS                       ((uint32_t)0x40010000)
+#define TIM2_BASE_ADDRESS                       ((uint32_t)0x40000000)
+#define TIM3_BASE_ADDRESS                       ((uint32_t)0x40000400)
+#define TIM4_BASE_ADDRESS                       ((uint32_t)0x40000800)
+#define TIM5_BASE_ADDRESS                       ((uint32_t)0x40000C00)
+#define TIM9_BASE_ADDRESS                       ((uint32_t)0x40014000)
+#define TIM10_BASE_ADDRESS                      ((uint32_t)0x40014400)
+#define TIM11_BASE_ADDRESS                      ((uint32_t)0x40014800)

@@ -8,6 +8,8 @@
         "syscfg.h": "c",
         "rcc.h": "c",
         "interrupt.h": "c",
-        "exti.h": "c"
+        "exti.h": "c",
+        "delay.h": "c",
+        "timer.h": "c"
     }
 }

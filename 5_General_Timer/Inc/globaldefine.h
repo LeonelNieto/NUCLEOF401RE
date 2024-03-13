@@ -4,8 +4,29 @@
 // ################################################################# //
 //                                RCC                                //
 // ################################################################# //
-#define RCC_AHB1ENR_GPIOA_EN	                ((uint32_t)0x00000001)
 #define RCC_BASE_ADDRESS                        ((uint32_t)0x40023800)
+#define RCC_CR_HSION                            ((uint32_t)0x00000001)
+#define RCC_CR_HSIRDY                           ((uint32_t)0x00000002)
+#define RCC_CR_HSEON                            ((uint32_t)0x00010000)
+#define RCC_CFGR_SW_HSI                         ((uint32_t)0x00000000)
+#define RCC_CFGR_SW_HSE                         ((uint32_t)0x00000001)
+#define RCC_CFGR_SW_PLL                         ((uint32_t)0x00000002)
+#define RCC_CFGR_SW_NOTALLOW                    ((uint32_t)0x00000003)
+#define RCC_CFGR_HPRE_DIV1                      ((uint32_t)0x00000000)
+#define RCC_CFGR_HPRE_DIV2                      ((uint32_t)0x00000080)
+#define RCC_CFGR_HPRE_DIV4                      ((uint32_t)0x00000090)
+#define RCC_CFGR_HPRE_DIV8                      ((uint32_t)0x000000A0)
+#define RCC_CFGR_HPRE_DIV16                     ((uint32_t)0x000000B0)
+#define RCC_CFGR_HPRE_DIV64                     ((uint32_t)0x000000C0)
+#define RCC_CFGR_HPRE_DIV128                    ((uint32_t)0x000000D0)
+#define RCC_CFGR_HPRE_DIV256                    ((uint32_t)0x000000E0)
+#define RCC_CFGR_HPRE_DIV512                    ((uint32_t)0x000000F0)
+#define RCC_CFGR_PPRE1_DIV1                     ((uint32_t)0x00000000)
+#define RCC_CFGR_PPRE1_DIV2                     ((uint32_t)0x00001000)
+#define RCC_CFGR_PPRE1_DIV4                     ((uint32_t)0x00001400)
+#define RCC_CFGR_PPRE1_DIV8                     ((uint32_t)0x00001800)
+#define RCC_CFGR_PPRE1_DIV16                     ((uint32_t)0x00001C00)
+#define RCC_AHB1ENR_GPIOA_EN	                ((uint32_t)0x00000001)
 #define RCC_AHB1ENR_GPIOB_EN                    ((uint32_t)0x00000002)
 #define RCC_AHB1ENR_GPIOC_EN                    ((uint32_t)0x00000004)
 #define RCC_AHB1ENR_GPIOD_EN                    ((uint32_t)0x00000008)
@@ -14,6 +35,7 @@
 #define RCC_AHB1ENR_CRC_EN                      ((uint32_t)0x00001000)
 #define RCC_AHB1ENR_DMA1_EN                     ((uint32_t)0x00020000)
 #define RCC_AHB1ENR_DMA2_EN                     ((uint32_t)0x00040000)
+#define RCC_APB1ENR_TIME2EN                     ((uint32_t)0x00000001)
 #define RCC_APB2ENR_TIM1EN_ClockDisable         ((uint32_t)0x00000000)
 #define RCC_APB2ENR_TIM1EN_ClockEnabled         ((uint32_t)0x00000001)
 #define RCC_APB2ENR_USART1_ClockEnabled         ((uint32_t)0x00000010)
@@ -173,7 +195,7 @@
 #define SYSCFG_EXTICR4_PC13                     ((uint32_t)0x00000020)
 
 // ################################################################# //
-//                                EXTI                               //
+//                                NVIC                               //
 // ################################################################# //
 #define NVIC_BASE_ADDRESS                       ((uint32_t)0xE000E100)
 #define NVIC_PRIORITY_4                         ((uint8_t)0x40)
@@ -199,3 +221,5 @@
 #define TIM9_BASE_ADDRESS                       ((uint32_t)0x40014000)
 #define TIM10_BASE_ADDRESS                      ((uint32_t)0x40014400)
 #define TIM11_BASE_ADDRESS                      ((uint32_t)0x40014800)
+#define TIMx_CR1_CEN                            ((uint32_t)0x00000001)
+#define TIMx_SR_UIF                             ((uint32_t)0x00000001)

@@ -1,9 +1,14 @@
 #include <stdint.h>
 #include "interrupt.h"
 #include "delay.h"
+#include "timer.h"
 
 int main(void)
 {
+
+  SetSystemClockTo16MHz();
+  EnableTim2();
+
   RCC->AHB1ENR    |=  RCC_AHB1ENR_GPIOA_EN;                // Enable clock port A (Led)
   RCC->AHB1ENR    |=  RCC_AHB1ENR_GPIOC_EN;                // Enable clock port C (Button)
   GPIOA->MODER    &= ~(GPIO_MODER_05_OUTPUT);              // Clen registers port A
@@ -21,6 +26,6 @@ int main(void)
   while (1)
   {
     GPIOA->ODR ^= (1<<5);
-    SystickDelayMs(1000);
+    TimDelayMs(1000000);
   }
 }

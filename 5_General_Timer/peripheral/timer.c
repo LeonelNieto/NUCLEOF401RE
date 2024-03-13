@@ -41,6 +41,6 @@ void TimDelayMs(uint32_t u32Time_Ms)
     for (uint32_t i = 0; i <= u32Time_Ms; i++)
     {
         while ((TIM2->SR & TIMx_SR_UIF) == 0);      // Wait until UIF is set        
+        TIM2->SR &= ~TIMx_SR_UIF;                   // Clean register
     }
-    TIM2->SR &= ~TIMx_SR_UIF;                       // Clean register
 }

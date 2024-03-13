@@ -26,6 +26,6 @@ int main(void)
   while (1)
   {
     GPIOA->ODR ^= (1<<5);
-    TimDelayMs(1000000);
+    TimDelayMs(1000);
   }
 }

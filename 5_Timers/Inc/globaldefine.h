@@ -177,7 +177,8 @@
 #define GPIO_ODR_13_ON                          ((uint32_t)0x00002000)
 #define GPIO_ODR_14_ON                          ((uint32_t)0x00004000)
 #define GPIO_ODR_15_ON                          ((uint32_t)0x00008000)
-
+#define GPIO_BSRR_BS13                          ((uint32_t)0x00002000)
+#define GPIO_BSRR_BR13                          ((uint32_t)0x20000000)
 // ################################################################# //
 //                                EXTI                               //
 // ################################################################# //
@@ -223,3 +224,4 @@
 #define TIM11_BASE_ADDRESS                      ((uint32_t)0x40014800)
 #define TIMx_CR1_CEN                            ((uint32_t)0x00000001)
 #define TIMx_SR_UIF                             ((uint32_t)0x00000001)
+#define TIMx_DIER_UIE                           ((uint32_t)0x00000001)

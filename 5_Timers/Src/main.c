@@ -6,8 +6,10 @@
 int main(void)
 {
 
-  SetSystemClockTo16MHz();
-  EnableTim2();
+  SetSystemClockTo16MHz( );
+  // EnableTim2();          Without Interrupt
+  EnableTIM2Interrupt1s( );
+
 
   RCC->AHB1ENR    |=  RCC_AHB1ENR_GPIOA_EN;                // Enable clock port A (Led)
   RCC->AHB1ENR    |=  RCC_AHB1ENR_GPIOC_EN;                // Enable clock port C (Button)
@@ -20,12 +22,11 @@ int main(void)
   EXTI->IMR       |= EXTI_IMR_MR13_ISNOTMASKED;            // Enable external interruption PC13
   EXTI->FTSR      |= EXTI_FTSR_TR13_FALLING_TRIGGER_EN;    // Set the falling trigger enable 
 
-  enableInterruptIRQn(EXTI15_10_IRQn);
+  NVIC_EnableIRQ(EXTI15_10_IRQn);
 
 
   while (1)
   {
-    GPIOA->ODR ^= (1<<5);
-    TimDelayMs(1000);
+
   }
 }

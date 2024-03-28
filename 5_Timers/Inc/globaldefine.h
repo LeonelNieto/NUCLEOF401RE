@@ -25,7 +25,7 @@
 #define RCC_CFGR_PPRE1_DIV2                     ((uint32_t)0x00001000)
 #define RCC_CFGR_PPRE1_DIV4                     ((uint32_t)0x00001400)
 #define RCC_CFGR_PPRE1_DIV8                     ((uint32_t)0x00001800)
-#define RCC_CFGR_PPRE1_DIV16                     ((uint32_t)0x00001C00)
+#define RCC_CFGR_PPRE1_DIV16                    ((uint32_t)0x00001C00)
 #define RCC_AHB1ENR_GPIOA_EN	                ((uint32_t)0x00000001)
 #define RCC_AHB1ENR_GPIOB_EN                    ((uint32_t)0x00000002)
 #define RCC_AHB1ENR_GPIOC_EN                    ((uint32_t)0x00000004)
@@ -230,5 +230,6 @@
 //                           DEFINITIONS                             //
 // ################################################################# //
 
+#define FRECUENCY16MHZ                          (16000000)
 #define TICK_200_US                             ((uint32_t)0x00000C80)
 #define TICK_500_MS                             ((uint32_t)0x007A1200)

@@ -6,6 +6,6 @@
 extern void SetSystemClockTo16MHz( void );
 extern void EnableTim2( void );
 extern void TimDelayMs(uint32_t u32Time_Ms);
-extern void EnableTIM2Interrupt1s( void );
+extern void EnableTIM2Interrupt( uint32_t TimTickTime );
 
 #endif // TIMER_H

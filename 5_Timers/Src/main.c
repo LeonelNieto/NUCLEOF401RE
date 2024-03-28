@@ -8,7 +8,10 @@ int main(void)
 
   SetSystemClockTo16MHz( );
   // EnableTim2();          Without Interrupt
-  EnableTIM2Interrupt1s( );
+  EnableTIM2Interrupt( TICK_500_MS );
+
+
+
 
 
   RCC->AHB1ENR    |=  RCC_AHB1ENR_GPIOA_EN;                // Enable clock port A (Led)

@@ -46,19 +46,19 @@ void TimDelayMs(uint32_t u32Time_Ms)
     }
 }
 
-void EnableTIM2Interrupt1s( void )
+void EnableTIM2Interrupt( uint32_t TimTickTime )
 {
     RCC->APB1ENR |= RCC_APB1ENR_TIME2EN;            // Enable the APB1 for TIM2
 
     /* fCK_PSC / (PSC[15:0] + 1)
-       (16 MHz / (15999+1)) = 1 KHz timer clock speed */
-    TIM2->PSC = 15999;
+       (16 MHz / (0+1)) = 16 MHz timer clock speed */
+    TIM2->PSC = 0;
 
-    /*  (1 MHz / 1000) = 1KHz = 1ms          */
+    /*  (16 MHz / TimTickTime) = xHz = 1/xHz = Time          */
     /*  So, this will generate the 1ms delay */
-    TIM2->ARR = 999;
+    TIM2->ARR = TimTickTime - 1;
     TIM2->DIER |= TIMx_DIER_UIE;                    // Enable Interrupt
     TIM2->SR &= ~TIMx_SR_UIF;                       // Clean register
-    NVIC_EnableIRQ( TIM2_IRQn );                    // Enable NVIC Interrupt for Timer 3
+    NVIC_EnableIRQ( TIM2_IRQn );                    // Enable NVIC Interrupt for Timer 2
     TIM2->CR1 = TIMx_CR1_CEN;                       // Enable TIM2 
 }

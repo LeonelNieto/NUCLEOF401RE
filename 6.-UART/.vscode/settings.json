@@ -10,6 +10,7 @@
         "interrupt.h": "c",
         "exti.h": "c",
         "delay.h": "c",
-        "timer.h": "c"
+        "timer.h": "c",
+        "nucleof401re.h": "c"
     }
 }

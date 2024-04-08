@@ -2,8 +2,9 @@
 #include "interrupt.h"
 #include "delay.h"
 #include "timer.h"
+#include "uart.h"
 
-int main(void)
+int main( void )
 {
 
   SetSystemClockTo16MHz( );
@@ -21,6 +22,7 @@ int main(void)
   SYSCFG->EXTICR4 |= SYSCFG_EXTICR4_PC13;                  // Set the interrupt in PC13
   EXTI->IMR       |= EXTI_IMR_MR13_ISNOTMASKED;            // Enable external interruption PC13
   EXTI->FTSR      |= EXTI_FTSR_TR13_FALLING_TRIGGER_EN;    // Set the falling trigger enable 
+
 
   NVIC_EnableIRQ(EXTI15_10_IRQn);
 

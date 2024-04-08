@@ -1,3 +1,13 @@
+// ################################################################# //
+//                           DEFINITIONS                             //
+// ################################################################# //
+
+#define FRECUENCY_16MHZ                         ( 16000000 )
+#define APB1_CLK                                FRECUENCY_16MHZ
+#define UART_BAUDRATE                           (     9600 )
+#define TICK_200_US                             ((uint32_t)0x00000C80)
+#define TICK_500_MS                             ((uint32_t)0x007A1200)
+
 #define __IO volatile                        // Volatile Read and Write
 #define __I  volatile                        // Volatile only read
 
@@ -36,6 +46,7 @@
 #define RCC_AHB1ENR_DMA1_EN                     ((uint32_t)0x00020000)
 #define RCC_AHB1ENR_DMA2_EN                     ((uint32_t)0x00040000)
 #define RCC_APB1ENR_TIME2EN                     ((uint32_t)0x00000001)
+#define RCC_APB1ENR_USART2EN                    ((uint32_t)0x00020000)
 #define RCC_APB2ENR_TIM1EN_ClockDisable         ((uint32_t)0x00000000)
 #define RCC_APB2ENR_TIM1EN_ClockEnabled         ((uint32_t)0x00000001)
 #define RCC_APB2ENR_USART1_ClockEnabled         ((uint32_t)0x00000010)
@@ -52,8 +63,8 @@
 // ################################################################# //
 //                                     GPIO                          //
 // ################################################################# //
-#define GPIOB_BASE_ADDRESS                      ((uint32_t)0x40020400)
 #define GPIOA_BASE_ADDRESS                      ((uint32_t)0x40020000)
+#define GPIOB_BASE_ADDRESS                      ((uint32_t)0x40020400)
 #define GPIOC_BASE_ADDRESS                      ((uint32_t)0x40020800)
 #define GPIOD_BASE_ADDRESS                      ((uint32_t)0x40020C00)
 #define GPIOE_BASE_ADDRESS                      ((uint32_t)0x40021000)
@@ -179,6 +190,12 @@
 #define GPIO_ODR_15_ON                          ((uint32_t)0x00008000)
 #define GPIO_BSRR_BS13                          ((uint32_t)0x00002000)
 #define GPIO_BSRR_BR13                          ((uint32_t)0x20000000)
+
+//                                  AFRL                             //
+#define GPIO_AFRL_AFRL2_AF7                     ((uint32_t)0x00000700)
+
+
+
 // ################################################################# //
 //                                EXTI                               //
 // ################################################################# //
@@ -227,9 +244,8 @@
 #define TIMx_DIER_UIE                           ((uint32_t)0x00000001)
 
 // ################################################################# //
-//                           DEFINITIONS                             //
+//                                 USART                             //
 // ################################################################# //
-
-#define FRECUENCY16MHZ                          (16000000)
-#define TICK_200_US                             ((uint32_t)0x00000C80)
-#define TICK_500_MS                             ((uint32_t)0x007A1200)
+#define USART2_BASE_ADDRESS                     ((uint32_t)0x40004400)
+#define USART_CR1_TE_EN                         ((uint32_t)0x00000008)
+#define USART_CR1_USART_EN                      ((uint32_t)0x00002000)

@@ -233,7 +233,6 @@ typedef struct
 // ###################################################################//
 //                                TIM                                 //
 // ###################################################################//
-
 typedef struct 
 {
     __IO uint32_t CR1;             // Offset 0x00 control register 1
@@ -268,5 +267,22 @@ typedef struct
 #define TIM10 ((TIM_t *)(TIM10_BASE_ADDRESS))
 #define TIM11 ((TIM_t *)(TIM11_BASE_ADDRESS))
 
+
+// ###################################################################//
+//                                USART                               //
+// ###################################################################//
+
+typedef struct
+{
+    __IO uint32_t SR;                                                                // Offset 0x00 Status register 
+    __IO uint32_t DR;                                                                // Offset 0x04 Data register 
+    __IO uint32_t BRR;                                                               // Offset 0x08 Baud rate register 
+    __IO uint32_t CR1;                                                               // Offset 0x0C Control register 1 
+    __IO uint32_t CR2;                                                               // Offset 0x10 Control register 2 
+    __IO uint32_t CR3;                                                               // Offset 0x14 Control register 3 
+    __IO uint32_t GPTR;                                                              // Offset 0x18 Guard time and prescaler register 
+} USART_t;
+
+#define USART2 ((USART_t *)(USART2_BASE_ADDRESS))
 
 #endif //NUCLEOF401RE_H

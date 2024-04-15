@@ -6,6 +6,7 @@
 
 int main( void )
 {
+  SR_InitTx_UART2( );
   SetSystemClockTo16MHz( );
   // EnableTim2();          Without Interrupt
   EnableTIM2Interrupt( TICK_200_US );
@@ -28,6 +29,6 @@ int main( void )
 
   while (1)
   {
-
+    SR_UART_Write( 'Y' );
   }
 }

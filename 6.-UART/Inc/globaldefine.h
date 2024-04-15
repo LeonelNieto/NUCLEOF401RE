@@ -4,7 +4,7 @@
 
 #define FRECUENCY_16MHZ                         ( 16000000 )
 #define APB1_CLK                                FRECUENCY_16MHZ
-#define UART_BAUDRATE                           (     9600 )
+#define UART_BAUDRATE                           ( 115200 )
 #define TICK_200_US                             ((uint32_t)0x00000C80)
 #define TICK_500_MS                             ((uint32_t)0x007A1200)
 
@@ -249,3 +249,4 @@
 #define USART2_BASE_ADDRESS                     ((uint32_t)0x40004400)
 #define USART_CR1_TE_EN                         ((uint32_t)0x00000008)
 #define USART_CR1_USART_EN                      ((uint32_t)0x00002000)
+#define USART_SR_TXE                            ( 1U << 7 )

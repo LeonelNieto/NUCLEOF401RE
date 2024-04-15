@@ -23,6 +23,11 @@ static void SR_InitTx_UART2 ( void )
     USART2->CR1  |= USART_CR1_USART_EN;                                              // Enable USART
 }
 
+void SR_UART_Write( int ch )
+{
+    USART2->DR = ( ch & 0xFF);
+}
+
 void SR_Init_UART2( void )
 {
 

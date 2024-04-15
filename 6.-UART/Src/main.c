@@ -6,10 +6,9 @@
 
 int main( void )
 {
-
   SetSystemClockTo16MHz( );
   // EnableTim2();          Without Interrupt
-  EnableTIM2Interrupt( 1 );
+  EnableTIM2Interrupt( TICK_200_US );
 
 
   RCC->AHB1ENR    |=  RCC_AHB1ENR_GPIOA_EN;                // Enable clock port A (Led)
@@ -24,7 +23,7 @@ int main( void )
   EXTI->FTSR      |= EXTI_FTSR_TR13_FALLING_TRIGGER_EN;    // Set the falling trigger enable 
 
 
-  NVIC_EnableIRQ(EXTI15_10_IRQn);
+  NVIC_EnableIRQ( EXTI15_10_IRQn );
 
 
   while (1)

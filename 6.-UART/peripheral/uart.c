@@ -1,8 +1,14 @@
+#include <stdio.h> 
 #include "nucleof401re.h"
 #include "globaldefine.h"
 #include "uart.h"
 
-uint32_t u32BaudRate;
+
+int __io_putchar( int text )
+{
+    SR_UART_Write( text );
+    return text;
+}
 
 static uint16_t SR_UART_DivBd( uint32_t PeriphClock, uint32_t BaudRate)
 {

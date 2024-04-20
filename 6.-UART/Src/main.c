@@ -1,4 +1,6 @@
 #include <stdint.h>
+#include <stdio.h>
+#include "globaldefine.h"
 #include "interrupt.h"
 #include "delay.h"
 #include "timer.h"
@@ -26,9 +28,7 @@ int main( void )
 
   NVIC_EnableIRQ( EXTI15_10_IRQn );
 
-
   while (1)
   {
-    SR_UART_Write( 'Y' );
   }
 }

@@ -1,8 +1,41 @@
+#include "nucleof401re.h"
+#include "globaldefine.h"
 #include "uart.h"
+
+uint32_t u32BaudRate;
 
 static uint16_t SR_UART_DivBd( uint32_t PeriphClock, uint32_t BaudRate)
 {
+    /*
+        Formula to calculate baudrate 
+        Tx/Rx baud = fCK / (8*(2-OVER8)*USARTDIV)    I used OVER8 = 0
+        Example:
+        fCK = 16 000 000
+        Tx/Rx baud = 19 200
+        USARTDIV = 16 000 000 / (8 * (2-0) * 19 200)
+        USARTDIV = 52.0833333333
+
+        52 -> 0x34 ---> DIV_Mantissa
+
+        16 * (0.83333) = 1.333
+        1 -> 0x1 ---> DIV_Fraction
+
+        BRR = 0x00000341
+
+        0x00000000000000000000001101000001
+          ||||||||||||||||||||||||||||||||__ DIV_Fraction[3:0]
+          ||||||||||||||||||||||||||||           0x1
+          ||||||||||||||||||||||||||||______ DIV_Mantissa[11:0]
+          ||||||||||||||||                      0x34
+          ||||||||||||||||__________________ RESERVED
+    */
+
+    if( BaudRate == 9600 )
+    {
+        return BAUDS_9600;
+    }
     return ( ( PeriphClock + ( BaudRate / 2U ) ) / BaudRate );
+
 }
 
 static void SR_UART_SetBaudRate ( USART_t *USARTx, uint32_t PeripchClk, uint32_t BaudRate ) 

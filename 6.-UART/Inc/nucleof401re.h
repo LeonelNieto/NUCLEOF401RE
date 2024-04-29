@@ -188,6 +188,8 @@
 
 //                                  AFRL                             //
 #define GPIO_AFRL_AFRL2_AF7                     ((uint32_t)0x00000700)
+#define GPIO_AFRL_AFRL3_AF7                     ((uint32_t)0x00007000)
+
 
 
 
@@ -242,9 +244,11 @@
 //                                 USART                             //
 // ################################################################# //
 #define USART2_BASE_ADDRESS                     ((uint32_t)0x40004400)
-#define USART_CR1_TE_EN                         ((uint32_t)0x00000008)
+#define USART_CR1_TE_EN                         ( 1U << 3)
+#define USART_CR1_RX_EN                         ( 1U << 2)
 #define USART_CR1_USART_EN                      ((uint32_t)0x00002000)
 #define USART_SR_TXE                            ( 1U << 7 )
+#define USART_SR_RXNE                           ( 1U << 5 )
 
 // ###################################################################//
 //                              EXTI                                  //

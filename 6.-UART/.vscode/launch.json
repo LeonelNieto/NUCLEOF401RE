@@ -1,0 +1,24 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug cortex-arm",
+            "cwd": "${workspaceFolder}",
+            "executable": "${workspaceRoot}/build/${workspaceFolderBasename}.elf",
+            "request": "launch",
+            "type": "cortex-debug",
+            "runToEntryPoint": "main",
+            "servertype": "openocd",
+            "device": "STM32F401RE",
+            "svdFile": "D:/Cursos/NUCLEOF401RE/stm32f401.svd",
+            "configFiles": [
+                "C:/openocd/openocd/scripts/interface/stlink.cfg",
+                "C:/openocd/openocd/scripts/target/stm32f4x.cfg"
+            ],
+            "preLaunchTask": "make-all"
+        }
+    ]
+}
+
+
+

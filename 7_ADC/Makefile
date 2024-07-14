@@ -123,7 +123,7 @@ CFLAGS += -MMD -MP -MF"$(@:%.o=%.d)"
 # LDFLAGS
 #######################################
 # link script
-LDSCRIPT = STM32F401RETx_FLASH.ld
+LDSCRIPT = STM32F401RETX_FLASH.ld
 
 # libraries
 LIBS = -lc -lm -lnosys 
@@ -167,12 +167,12 @@ $(BUILD_DIR):
 # clean up
 #######################################
 clean:
-	del /f /q $(BUILD_DIR)
+	rm -rf $(BUILD_DIR)/*
 
 clean_trash:
-	PowerShell Remove-Item -Path "$(BUILD_DIR)\*.d" -Force
-	PowerShell Remove-Item -Path "$(BUILD_DIR)\*.lst" -Force
-	PowerShell Remove-Item -Path "$(BUILD_DIR)\*.o" -Force
+	rm -f $(BUILD_DIR)/*.d
+	rm -f $(BUILD_DIR)/*.lst
+	rm -f $(BUILD_DIR)/*.o
 
 #######################################
 # dependencies

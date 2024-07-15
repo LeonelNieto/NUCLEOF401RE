@@ -3,7 +3,7 @@
 #include "globaldefine.h"
 #include "adc.h"
 
-int main( void )
+void main( void )
 {
-    return 0;
+    ADC1_IN1_Init( );
 }

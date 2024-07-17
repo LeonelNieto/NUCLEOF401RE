@@ -31,7 +31,7 @@
 #define RCC_CFGR_PPRE1_DIV4                     ((uint32_t)0x00001400)
 #define RCC_CFGR_PPRE1_DIV8                     ((uint32_t)0x00001800)
 #define RCC_CFGR_PPRE1_DIV16                    ((uint32_t)0x00001C00)
-#define RCC_AHB1ENR_GPIOA_EN	                ((uint32_t)0x00000001)
+#define RCC_AHB1ENR_GPIOA_EN	                  ((uint32_t)0x00000001)
 #define RCC_AHB1ENR_GPIOB_EN                    ((uint32_t)0x00000002)
 #define RCC_AHB1ENR_GPIOC_EN                    ((uint32_t)0x00000004)
 #define RCC_AHB1ENR_GPIOD_EN                    ((uint32_t)0x00000008)
@@ -251,8 +251,11 @@
 #define ADC1_BASE_ADDRESS                       ((uint32_t)0x40012000)
 #define ADC1_SQR3_SQ1_CH1                       ((uint32_t)0x00000001)
 #define ADC1_SQR3_SQ2_CH16                      ((uint32_t)0x00000200)
-#define ADC1_SQR1_LENGTH_2CHANNELS               ((uint32_t)0x00100000)
-
+#define ADC1_SQR1_LENGTH_1CHANNEL               ((uint32_t)0x00000000)
+#define ADC1_SQR1_LENGTH_2CHANNELS              ((uint32_t)0x00100000)
+#define ADC1_CR2_ADON_EN                        ((uint32_t)0x00000001)
+#define ADC1_CR2_SWSTART_EN                     ((uint32_t)0x40000000)
+#define ADC1_SR_EOC_Finish                      ((uint32_t)0x00000002)
 // ###################################################################//
 //                              EXTI                                  //
 // ###################################################################//

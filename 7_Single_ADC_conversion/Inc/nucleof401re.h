@@ -31,7 +31,7 @@
 #define RCC_CFGR_PPRE1_DIV4                     ((uint32_t)0x00001400)
 #define RCC_CFGR_PPRE1_DIV8                     ((uint32_t)0x00001800)
 #define RCC_CFGR_PPRE1_DIV16                    ((uint32_t)0x00001C00)
-#define RCC_AHB1ENR_GPIOA_EN	                ((uint32_t)0x00000001)
+#define RCC_AHB1ENR_GPIOA_EN	                  ((uint32_t)0x00000001)
 #define RCC_AHB1ENR_GPIOB_EN                    ((uint32_t)0x00000002)
 #define RCC_AHB1ENR_GPIOC_EN                    ((uint32_t)0x00000004)
 #define RCC_AHB1ENR_GPIOD_EN                    ((uint32_t)0x00000008)
@@ -185,13 +185,9 @@
 #define GPIO_ODR_15_ON                          ((uint32_t)0x00008000)
 #define GPIO_BSRR_BS13                          ((uint32_t)0x00002000)
 #define GPIO_BSRR_BR13                          ((uint32_t)0x20000000)
-
 //                                  AFRL                             //
 #define GPIO_AFRL_AFRL2_AF7                     ((uint32_t)0x00000700)
 #define GPIO_AFRL_AFRL3_AF7                     ((uint32_t)0x00007000)
-
-
-
 
 // ################################################################# //
 //                                EXTI                               //
@@ -201,7 +197,6 @@
 #define EXTI_RTSR_TR13_RISING_TRIGGER_EN        ((uint32_t)0x00002000)
 #define EXTI_FTSR_TR13_FALLING_TRIGGER_EN       ((uint32_t)0x00002000)
 #define EXTI_PR_PR13_TRIGGER_OCCURRED           ((uint32_t)0x00002000)
-
 
 // ################################################################# //
 //                                SYSCFG                             //
@@ -250,6 +245,17 @@
 #define USART_SR_TXE                            ( 1U << 7 )
 #define USART_SR_RXNE                           ( 1U << 5 )
 
+// ################################################################# //
+//                                ADC1                               //
+// ################################################################# //
+#define ADC1_BASE_ADDRESS                       ((uint32_t)0x40012000)
+#define ADC1_SQR3_SQ1_CH1                       ((uint32_t)0x00000001)
+#define ADC1_SQR3_SQ2_CH16                      ((uint32_t)0x00000200)
+#define ADC1_SQR1_LENGTH_1CHANNEL               ((uint32_t)0x00000000)
+#define ADC1_SQR1_LENGTH_2CHANNELS              ((uint32_t)0x00100000)
+#define ADC1_CR2_ADON_EN                        ((uint32_t)0x00000001)
+#define ADC1_CR2_SWSTART_EN                     ((uint32_t)0x40000000)
+#define ADC1_SR_EOC_Finish                      ((uint32_t)0x00000002)
 // ###################################################################//
 //                              EXTI                                  //
 // ###################################################################//
@@ -264,7 +270,6 @@ typedef struct
 } EXTI_t;
 
 #define EXTI ((EXTI_t *)(EXTI_BASE_ADDRESS))
-
 
 // ###################################################################//
 //                              GPIO                                  //
@@ -517,7 +522,6 @@ typedef struct
 // ###################################################################//
 //                                USART                               //
 // ###################################################################//
-
 typedef struct
 {
     __IO uint32_t SR;                                                                // Offset 0x00 Status register 
@@ -530,5 +534,35 @@ typedef struct
 } USART_t;
 
 #define USART2 ((USART_t *)(USART2_BASE_ADDRESS))
+
+
+// ###################################################################//
+//                                ADC                                 //
+// ###################################################################//
+typedef struct
+{
+    __IO uint32_t SR;
+    __IO uint32_t CR1;
+    __IO uint32_t CR2;
+    __IO uint32_t SMPR1;
+    __IO uint32_t SMPR2;
+    __IO uint32_t JOFR1;
+    __IO uint32_t JOFR2;
+    __IO uint32_t JOFR3;
+    __IO uint32_t JOFR4;
+    __IO uint32_t HTR;
+    __IO uint32_t LTR;
+    __IO uint32_t SQR1;
+    __IO uint32_t SQR2;
+    __IO uint32_t SQR3;
+    __I  uint32_t JSQR;
+    __I  uint32_t JDR1;
+    __I  uint32_t JDR2;
+    __I  uint32_t DR;
+         uint32_t RESERV0[172];
+    __IO uint32_t CCR;                  // Validate if this is the address 0x300
+} ADC1_t;
+
+#define ADC1 ((ADC1_t *)(ADC1_BASE_ADDRESS))
 
 #endif //NUCLEOF401RE_H

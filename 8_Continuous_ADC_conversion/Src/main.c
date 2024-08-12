@@ -4,11 +4,12 @@
 #include "adc.h"
 #include "uart.h"
 
+uint32_t SensorValue;
 
 void main( void )
 {
-    uint32_t SensorValue;
     ADC1_IN1_IN16_Init( );
+    ADC1_StartConversion( );
     
     while (1)
     {

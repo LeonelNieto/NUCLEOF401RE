@@ -4,16 +4,15 @@
 #include "adc.h"
 #include "uart.h"
 
+uint32_t SensorValue;
 
 void main( void )
 {
-    uint32_t SensorValue;
     ADC1_IN1_IN16_Init( );
-    SR_Init_UART2( );
+    ADC1_StartConversion( );
     
     while (1)
     {
         SensorValue = ADC_Read( );
-        printf("Sensor value: %d \n\r", SensorValue);
     }
 }

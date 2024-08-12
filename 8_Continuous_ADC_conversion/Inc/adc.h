@@ -5,6 +5,6 @@
 
 extern void ADC1_IN1_IN16_Init( void );
 extern uint32_t ADC_Read( void );
-
+void ADC1_StartConversion( void );
 
 #endif

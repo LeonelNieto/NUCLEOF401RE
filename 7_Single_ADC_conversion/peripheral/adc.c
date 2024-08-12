@@ -16,6 +16,7 @@ void ADC1_IN1_IN16_Init( void )
 
 static void ADC1_StartConversion( void )
 {
+    ADC1->CR2  |= ADC1_CR2_CONT_CONTMODE;
     ADC1->CR2  |= ADC1_CR2_SWSTART_EN;                       // Start Conversion    
     while(!(ADC1->SR & ADC1_SR_EOC_Finish)){ }               // Wait for conversion   
 }

@@ -256,6 +256,7 @@
 #define ADC1_CR2_ADON_EN                        ((uint32_t)0x00000001)
 #define ADC1_CR2_SWSTART_EN                     ((uint32_t)0x40000000)
 #define ADC1_SR_EOC_Finish                      ((uint32_t)0x00000002)
+#define ADC1_CR2_CONT_CONTMODE                  ((uint32_t)0x00000002)
 // ###################################################################//
 //                              EXTI                                  //
 // ###################################################################//

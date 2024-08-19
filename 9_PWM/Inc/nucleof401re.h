@@ -31,7 +31,7 @@
 #define RCC_CFGR_PPRE1_DIV4                     ((uint32_t)0x00001400)
 #define RCC_CFGR_PPRE1_DIV8                     ((uint32_t)0x00001800)
 #define RCC_CFGR_PPRE1_DIV16                    ((uint32_t)0x00001C00)
-#define RCC_AHB1ENR_GPIOA_EN	                  ((uint32_t)0x00000001)
+#define RCC_AHB1ENR_GPIOA_EN	                ((uint32_t)0x00000001)
 #define RCC_AHB1ENR_GPIOB_EN                    ((uint32_t)0x00000002)
 #define RCC_AHB1ENR_GPIOC_EN                    ((uint32_t)0x00000004)
 #define RCC_AHB1ENR_GPIOD_EN                    ((uint32_t)0x00000008)
@@ -41,6 +41,7 @@
 #define RCC_AHB1ENR_DMA1_EN                     ((uint32_t)0x00020000)
 #define RCC_AHB1ENR_DMA2_EN                     ((uint32_t)0x00040000)
 #define RCC_APB1ENR_TIME2EN                     ((uint32_t)0x00000001)
+#define RCC_APB1ENR_TIME3EN                     ((uint32_t)0x00000002)
 #define RCC_APB1ENR_USART2EN                    ((uint32_t)0x00020000)
 #define RCC_APB2ENR_TIM1EN_ClockDisable         ((uint32_t)0x00000000)
 #define RCC_APB2ENR_TIM1EN_ClockEnabled         ((uint32_t)0x00000001)
@@ -188,6 +189,7 @@
 //                                  AFRL                             //
 #define GPIO_AFRL_AFRL2_AF7                     ((uint32_t)0x00000700)
 #define GPIO_AFRL_AFRL3_AF7                     ((uint32_t)0x00007000)
+#define GPIO_AFRL_AFRL6_AF2                     ((uint32_t)0x02000000)
 
 // ################################################################# //
 //                                EXTI                               //
@@ -234,6 +236,8 @@
 #define TIMx_CR1_CEN                            ((uint32_t)0x00000001)
 #define TIMx_SR_UIF                             ((uint32_t)0x00000001)
 #define TIMx_DIER_UIE                           ((uint32_t)0x00000001)
+#define TIMx_CCMR1_OC1M_PWM_Mode_1              ((uint32_t)0x00000060)
+#define TIMx_CCER_CC1E_ON                       ((uint32_t)0x00000001)
 
 // ################################################################# //
 //                                 USART                             //

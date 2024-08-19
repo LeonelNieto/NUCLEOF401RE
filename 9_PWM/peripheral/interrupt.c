@@ -32,7 +32,7 @@ void TIM2_IRQHandler( void )
 {
     if( TIM2->SR & TIMx_SR_UIF )      // If UIF flag is set
     {
-      TurnOnOffLedPA5();
+      
       TIM2->SR &= ~TIMx_SR_UIF;       // Clean register
     }
 }

@@ -563,6 +563,8 @@ typedef struct
     __I  uint32_t JSQR;
     __I  uint32_t JDR1;
     __I  uint32_t JDR2;
+    __I  uint32_t JDR3;
+    __I  uint32_t JDR4;
     __I  uint32_t DR;
          uint32_t RESERV0[172];
     __IO uint32_t CCR;                  // Validate if this is the address 0x300

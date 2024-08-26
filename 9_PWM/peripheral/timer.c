@@ -1,3 +1,4 @@
+#include "globaldefine.h"
 #include "timer.h"
 #include "interrupt.h"
 
@@ -46,7 +47,7 @@ void TimDelayMs(uint32_t u32Time_Ms)
     }
 }
 
-void EnableTIM2Interrupt( uint32_t TickTime )
+void EnableTIM2Interrupt( uint32_t TimFrecuencyHz )
 {
     RCC->APB1ENR |= RCC_APB1ENR_TIME2EN;            // Enable the APB1 for TIM2
 
@@ -56,7 +57,7 @@ void EnableTIM2Interrupt( uint32_t TickTime )
 
     /*  (16 MHz / TimTickTime) = xHz = 1/xHz = Time          */
     /*  So, this will generate the 1ms delay */
-    TIM2->ARR = TickTime - 1;
+    TIM2->ARR = (Frecuency_1MHz / TimFrecuencyHz) - 1;;
     TIM2->DIER |= TIMx_DIER_UIE;                    // Enable Interrupt
     TIM2->SR &= ~TIMx_SR_UIF;                       // Clean register
     NVIC_EnableIRQ( TIM2_IRQn );                    // Enable NVIC Interrupt for Timer 2

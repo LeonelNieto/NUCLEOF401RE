@@ -1,5 +1,5 @@
-#include "interrupt.h"
 #include <stdbool.h>
+#include "interrupt.h"
 #include "nucleof401re.h"
 
 static volatile bool led_on = 0;
@@ -31,8 +31,8 @@ void EXTI15_10_IRQHandler(void)
 void TIM2_IRQHandler( void )
 {
     if( TIM2->SR & TIMx_SR_UIF )      // If UIF flag is set
-    {
-      
+    {  
+      TIM3->CCR1 = ( (TIM3->ARR + 1) * ((ADC1->DR * 100 ) / 4095 ) ) / 100;
       TIM2->SR &= ~TIMx_SR_UIF;       // Clean register
     }
 }

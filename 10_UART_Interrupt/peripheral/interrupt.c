@@ -2,8 +2,6 @@
 #include "interrupt.h"
 #include "nucleof401re.h"
 
-static volatile bool led_on = 0;
-
 static void TurnOnOffLedPA5(void)
 {
     GPIOA->ODR   ^= (1<<5);           // Togle state of bit 

@@ -1,5 +1,5 @@
 {
-    "cortex-debug.gdbPath": "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.2 Rel1/bin/arm-none-eabi-gdb",
+    "cortex-debug.gdbPath": "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.3 rel1/bin/arm-none-eabi-gdb",
     "cortex-debug.openocdPath": "C:/openocd/bin/openocd",
     "files.associations": {
         "stdint.h": "c",
@@ -11,7 +11,8 @@
         "exti.h": "c",
         "delay.h": "c",
         "timer.h": "c",
-        "nucleof401re.h": "c"
+        "nucleof401re.h": "c",
+        "uart.h": "c"
     },
     "cortex-debug.variableUseNaturalFormat": true
 }

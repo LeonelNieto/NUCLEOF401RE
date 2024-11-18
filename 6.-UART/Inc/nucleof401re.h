@@ -190,7 +190,9 @@
 #define GPIO_AFRL_AFRL2_AF7                     ((uint32_t)0x00000700)
 #define GPIO_AFRL_AFRL3_AF7                     ((uint32_t)0x00007000)
 
-
+//                                  AFRH                             //
+#define GPIO_AFRH_AFRH9_AF7                     ((uint32_t)0x00000070)
+#define GPIO_AFRH_AFRH10_AF7                    ((uint32_t)0x00000700)
 
 
 // ################################################################# //
@@ -243,6 +245,7 @@
 // ################################################################# //
 //                                 USART                             //
 // ################################################################# //
+#define USART1_BASE_ADDRESS                     ((uint32_t)0x40011000)
 #define USART2_BASE_ADDRESS                     ((uint32_t)0x40004400)
 #define USART_CR1_TE_EN                         ( 1U << 3)
 #define USART_CR1_RX_EN                         ( 1U << 2)
@@ -529,6 +532,7 @@ typedef struct
     __IO uint32_t GPTR;                                                              // Offset 0x18 Guard time and prescaler register 
 } USART_t;
 
+#define USART1 ((USART_t *)(USART1_BASE_ADDRESS))
 #define USART2 ((USART_t *)(USART2_BASE_ADDRESS))
 
 #endif //NUCLEOF401RE_H

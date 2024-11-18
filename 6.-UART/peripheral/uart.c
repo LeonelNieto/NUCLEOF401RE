@@ -3,9 +3,9 @@
 #include "globaldefine.h"
 #include "uart.h"
 
-int __io_putchar( int text )
+int __io_putchar( USART_t *USART, int text )
 {
-    SR_UART_Write( text );
+    SR_UART_Write( USART, text );
     return text;
 }
 
@@ -34,32 +34,27 @@ static uint16_t SR_UART_DivBd( uint32_t PeriphClock, uint32_t BaudRate)
           ||||||||||||||||                      0x34
           ||||||||||||||||__________________ RESERVED
     */
-
-    if( BaudRate == 9600 )
-    {
-        return BAUDS_9600;
-    }
     return ( ( PeriphClock + ( BaudRate / 2U ) ) / BaudRate );
 
 }
 
 static void SR_UART_SetBaudRate ( USART_t *USARTx, uint32_t PeripchClk, uint32_t BaudRate ) 
 {
-    USART2->BRR = SR_UART_DivBd( PeripchClk, BaudRate );
+    USARTx->BRR = SR_UART_DivBd( PeripchClk, BaudRate );
 }
 
-char UART2_Read( void )
+char USART_Read( USART_t *USART )
 {
-    while(!(USART2->SR & USART_SR_RXNE)){}                                       // Make sure the transmit data register is NOT empty 
+    while(!(USART->SR & USART_SR_RXNE));                                       // Make sure the transmit data register is NOT empty 
     
-    return USART2->DR;
+    return USART->DR;
 }
 
-void SR_UART_Write( int ch )
+void SR_UART_Write( USART_t *USART, char ch )
 {
-    while(!(USART2->SR & USART_SR_TXE)){ }                                       // Make sure the transmit data register is empty
+    while(!(USART->SR & USART_SR_TXE));                                        // Make sure the transmit data register is empty
     
-    USART2->DR = ( ch & 0xFF);                                                  // Write to transmit data register
+    USART->DR = ch;                                                  // Write to transmit data register
 }
 
 void SR_Init_UART2 ( void )
@@ -83,3 +78,29 @@ void SR_Init_UART2 ( void )
     USART2->CR1   = ( USART_CR1_TE_EN | USART_CR1_RX_EN );                      // Enable Transmitter and receptor
     USART2->CR1  |= USART_CR1_USART_EN;                                         // Enable USART
 }
+
+void SR_Init_USART1( void )
+{
+    // CONFIGURE Tx
+    RCC->AHB1ENR |= RCC_AHB1ENR_GPIOA_EN;                                       // Enable clock access to GPIOA
+    RCC->APB2ENR |= RCC_APB2ENR_USART1_ClockEnabled;
+    
+    GPIOA->MODER &= ~( 3U << 18 );                                               // Clear register
+    GPIOA->MODER |= GPIO_MODER_09_ALFM;                                         // Set PA9 as alternate function mode
+    GPIOA->AFRH  |= GPIO_AFRH_AFRH9_AF7;                                        // Set PA9 type UART_TX (AF07)                                       
+    GPIOA->AFRH  &= ~( 1U << 7 );                                               // Clean bit
+
+    // CONFIGURE Rx
+    GPIOA->MODER &= ~(3U << 20);                                                // Clear register
+    GPIOA->MODER |= GPIO_MODER_10_ALFM;                                         // Set PA10 as altenate function mode
+    GPIOA-> AFRH |= GPIO_AFRH_AFRH10_AF7;                                       // Set PA10 type UART_RX (AF07)
+    GPIOA->AFRH  &= ~( 1U << 11 );                                               // Clean bit
+    
+
+    // Configure UART
+    SR_UART_SetBaudRate( USART1, FRECUENCY_16MHZ, UART_BAUDRATE );               // Set the baudrate
+    USART1->CR1   = ( USART_CR1_TE_EN | USART_CR1_RX_EN );                      // Enable Transmitter and receptor
+    USART1->CR1  |= USART_CR1_USART_EN;                                         // Enable USART
+}
+
+// USART1_TX && USART1_RX -> AF07

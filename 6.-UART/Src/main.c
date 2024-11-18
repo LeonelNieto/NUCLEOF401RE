@@ -16,6 +16,7 @@ int main( void )
   SetSystemClockTo16MHz( );
   SR_Init_USART1( );
 
+
   RCC->AHB1ENR    |=  RCC_AHB1ENR_GPIOA_EN;                // Enable clock port A (Led)
   RCC->AHB1ENR    |=  RCC_AHB1ENR_GPIOC_EN;                // Enable clock port C (Button)
   GPIOA->MODER    &= ~(GPIO_MODER_05_OUTPUT);              // Clen registers port A

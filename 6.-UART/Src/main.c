@@ -7,12 +7,14 @@
 #include "uart.h"
 
 char DataRecived;
+char DATATOSEND0 = '0';
+char DATATOSEND1 = '1';
 
 int main( void )
 {
   SR_Init_UART2( );
   SetSystemClockTo16MHz( );
-  // EnableTIM2Interrupt( TICK_200_US );
+  SR_Init_USART1( );
 
 
   RCC->AHB1ENR    |=  RCC_AHB1ENR_GPIOA_EN;                // Enable clock port A (Led)
@@ -22,23 +24,19 @@ int main( void )
   GPIOC->MODER    &= ~(GPIO_MODER_INPUT);                  // Clean resgister port C    
 
   RCC->APB2ENR    |= RCC_APB2ENR_SYSCFGEN_ClockEnabled;    // Enable clock System configuration
-  // SYSCFG->EXTICR4 |= SYSCFG_EXTICR4_PC13;                  // Set the interrupt in PC13
-  // EXTI->IMR       |= EXTI_IMR_MR13_ISNOTMASKED;            // Enable external interruption PC13
-  // EXTI->FTSR      |= EXTI_FTSR_TR13_FALLING_TRIGGER_EN;    // Set the falling trigger enable 
-
-
-  // NVIC_EnableIRQ( EXTI15_10_IRQn );
 
   while (1)
   {
-    DataRecived = UART2_Read( );
+    DataRecived = USART_Read( USART1 );
     if( DataRecived == '1' )
     {
       GPIOA->ODR  |= (1<<5);
+      SR_UART_Write( USART1, DATATOSEND1);
     }
     else
     {
       GPIOA->ODR  &= ~(1<<5);
+      SR_UART_Write( USART1, DATATOSEND0);
     }
   }
 }

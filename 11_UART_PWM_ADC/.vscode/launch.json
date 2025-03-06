@@ -10,7 +10,7 @@
             "runToEntryPoint": "main",
             "servertype": "openocd",
             "device": "STM32F401RE",
-            "svdFile": "/home/leonel/github/NUCLEOF401RE/stm32f401.svd",
+            "svdFile": "/Users/leonel/Documents/github/NUCLEOF401RE/stm32f401.svd",
             "configFiles": [
                 "interface/stlink.cfg",
                 "target/stm32f4x.cfg"

@@ -43,6 +43,8 @@
 #define RCC_APB1ENR_TIME2EN                     ((uint32_t)0x00000001)
 #define RCC_APB1ENR_TIME3EN                     ((uint32_t)0x00000002)
 #define RCC_APB1ENR_USART2EN                    ((uint32_t)0x00020000)
+#define RCC_APB2ENR_USART6EN                    ((uint32_t)0x00000020)
+#define RCC_APB2ENR_USART1EN                    ((uint32_t)0x00000010)
 #define RCC_APB2ENR_TIM1EN_ClockDisable         ((uint32_t)0x00000000)
 #define RCC_APB2ENR_TIM1EN_ClockEnabled         ((uint32_t)0x00000001)
 #define RCC_APB2ENR_USART1_ClockEnabled         ((uint32_t)0x00000010)
@@ -242,10 +244,12 @@
 // ################################################################# //
 //                                 USART                             //
 // ################################################################# //
-#define USART2_BASE_ADDRESS                     ((uint32_t)0x40004400)
-#define USART_CR1_TE_EN                         ( 1U << 3)
-#define USART_CR1_RX_EN                         ( 1U << 2)
-#define USART_CR1_USART_EN                      ((uint32_t)0x00002000)
+#define USART1_BASE_ADDRESS                     ( ( uint32_t )0x40011000 )
+#define USART2_BASE_ADDRESS                     ( ( uint32_t )0x40004400 )
+#define USART6_BASE_ADDRESS                     ( ( uint32_t )0x40011400 )
+#define USART_CR1_TE_EN                         ( 1U << 3 )
+#define USART_CR1_RX_EN                         ( 1U << 2 )
+#define USART_CR1_USART_EN                      ( ( uint32_t )0x00002000 )
 #define USART_SR_TXE                            ( 1U << 7 )
 #define USART_SR_RXNE                           ( 1U << 5 )
 
@@ -537,8 +541,9 @@ typedef struct
     __IO uint32_t CR3;                                                               // Offset 0x14 Control register 3 
     __IO uint32_t GPTR;                                                              // Offset 0x18 Guard time and prescaler register 
 } USART_t;
-
-#define USART2 ((USART_t *)(USART2_BASE_ADDRESS))
+#define USART1 ( ( USART_t * )( USART1_BASE_ADDRESS ) )
+#define USART2 ( ( USART_t * )( USART2_BASE_ADDRESS ) )
+#define USART6 ( ( USART_t * )( USART6_BASE_ADDRESS ) )
 
 
 // ###################################################################//

@@ -3,12 +3,6 @@
 #include "globaldefine.h"
 #include "uart.h"
 
-int __io_putchar( USART_t *USARTx, int text )
-{
-    SR_UART_Write( USARTx, text );
-    return text;
-}
-
 static void SR_Init_GPIO( GPIO_t *GPIOx, uint8_t txPin, uint8_t rxPin, uint8_t altFunction )
 {
     // Config Tx
@@ -36,18 +30,32 @@ static void SR_UART_SetBaudRate ( USART_t *USARTx, uint32_t PeripchClk, uint32_t
     USARTx->BRR = usartDiv;
 }
 
-char UART_Read( USART_t *USARTx )
+uint8_t SR_UART_ReadByte( USART_t *USARTx )
 {
     while( !( USARTx->SR & USART_SR_RXNE ) ){}                                       // Make sure the transmit data register is NOT empty 
-    
-    return USARTx->DR;
+    return ( uint8_t )( USARTx->DR );
 }
 
-void SR_UART_Write( USART_t *USARTx, int ch )
+void SR_UART_ReadFrame( USART_t *USARTx, uint8_t *Pbuffer, uint8_t U8size )
 {
-    while( !( USARTx->SR & USART_SR_TXE ) ){ }                                      // Make sure the transmit data register is empty
-    
-    USARTx->DR = ( ch & 0xFF);                                                      // Write to transmit data register
+    for( uint8_t i = 0; i < U8size; i++ )
+    {
+        Pbuffer[ i ] = SR_UART_ReadByte( USARTx );
+    }
+}
+
+void SR_UART_WriteByte( USART_t *USARTx, uint8_t byte )
+{
+    while( !( USARTx->SR & USART_SR_TXE ) ){ }                                        // Make sure the transmit data register is empty
+    USARTx->DR = ( byte & 0xFF);                                                      // Write to transmit data register
+}
+
+void SR_UART_WriteFrame( USART_t *USARTx, uint8_t *Pframe, uint8_t U8size )
+{
+    for( uint8_t i = 0; i < U8size; i++ )
+    {
+        SR_UART_WriteByte( USARTx, Pframe[ i ] );
+    }
 }
 
 void SR_Init_UART ( USART_t *USARTx, uint32_t u32baudrate )

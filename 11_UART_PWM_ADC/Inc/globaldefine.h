@@ -6,3 +6,4 @@
 #define APB1_CLK                                FRECUENCY_16MHZ
 #define TICK_200_US                             ((uint32_t)0x00000C80)
 #define TICK_500_MS                             ((uint32_t)0x007A1200)
+#define Frecuency_1MHz                          ((uint32_t)0x000F4240)

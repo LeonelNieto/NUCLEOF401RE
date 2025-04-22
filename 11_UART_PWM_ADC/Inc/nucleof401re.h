@@ -6,6 +6,7 @@
 
 #define __IO volatile                        // Volatile Read and Write
 #define __I  volatile                        // Volatile only read
+#define __O volatile                         // volatile write only
 
 // ################################################################# //
 //                                RCC                                //
@@ -308,6 +309,12 @@ typedef struct {
 #define GPIOC ((GPIO_t *)(GPIOC_BASE_ADDRESS))
 
 
+// ################################################################# //
+//                                 FLASH                             //
+// ################################################################# //
+#define FLASH_BASE                              (( uint32_t ) 0x40023C00 )
+
+
 // ###################################################################//
 //                              IRQn                                  //
 // ###################################################################//
@@ -534,7 +541,6 @@ typedef struct
 #define TIM10 ((TIM_t *)(TIM10_BASE_ADDRESS))
 #define TIM11 ((TIM_t *)(TIM11_BASE_ADDRESS))
 
-
 // ###################################################################//
 //                                USART                               //
 // ###################################################################//
@@ -551,7 +557,6 @@ typedef struct
 #define USART1 ( ( USART_t * )( USART1_BASE_ADDRESS ) )
 #define USART2 ( ( USART_t * )( USART2_BASE_ADDRESS ) )
 #define USART6 ( ( USART_t * )( USART6_BASE_ADDRESS ) )
-
 
 // ###################################################################//
 //                                ADC                                 //
@@ -582,6 +587,22 @@ typedef struct
     __IO uint32_t CCR;                  // Validate if this is the address 0x300
 } ADC1_t;
 
-#define ADC1 ((ADC1_t *)(ADC1_BASE_ADDRESS))
+#define ADC1 ( ( ADC1_t * )( ADC1_BASE_ADDRESS ) )
+
+// ###################################################################//
+//                              FLASH                                 //
+// ###################################################################//
+
+typedef struct
+{
+    __IO uint32_t ACR;
+    __O  uint32_t KEYR;
+    __O  uint32_t OPTKEYR;
+    __IO uint32_t SR;
+    __IO uint32_t CR;
+    __IO uint32_t OPTCR;
+} FLASH_t;
+
+#define FLASH ( ( FLASH_t * )( FLASH_BASE ) )
 
 #endif //NUCLEOF401RE_H

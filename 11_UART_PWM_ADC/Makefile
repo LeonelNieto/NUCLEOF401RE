@@ -22,7 +22,7 @@ TARGET = $(notdir $(CURDIR))
 # debug build?
 DEBUG = 1
 # optimization
-OPT = -Og
+OPT = -O0
 
 
 #######################################
@@ -110,10 +110,13 @@ ASFLAGS = $(MCU) $(AS_DEFS) $(AS_INCLUDES) $(OPT) -Wall -fdata-sections -ffuncti
 
 CFLAGS += $(MCU) $(C_DEFS) $(INC_DIR) $(OPT) -Wall -fdata-sections -ffunction-sections
 
-ifeq ($(DEBUG), 1)
-CFLAGS += -g -gdwarf-2
-endif
+# ifeq ($(DEBUG), 1)
+# CFLAGS += -g -gdwarf-2
+# endif
 
+ifeq ($(DEBUG), 1)
+CFLAGS += -g3 -ggdb3 -O0 -DDEBUG
+endif
 
 # Generate dependency information
 CFLAGS += -MMD -MP -MF"$(@:%.o=%.d)"

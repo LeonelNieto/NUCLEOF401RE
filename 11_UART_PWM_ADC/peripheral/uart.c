@@ -1,9 +1,6 @@
-#include <stdio.h> 
-#include "nucleof401re.h"
-#include "globaldefine.h"
 #include "uart.h"
 
-static void SR_Init_GPIO( GPIO_t *GPIOx, uint8_t txPin, uint8_t rxPin, uint8_t altFunction )
+static void SR_Init_UART_GPIO( GPIO_t *GPIOx, uint8_t txPin, uint8_t rxPin, uint8_t altFunction )
 {
     // Config Tx
     GPIOx->MODER &= ~( 3U << ( txPin * 2 ) );                               // Clean bits
@@ -12,15 +9,24 @@ static void SR_Init_GPIO( GPIO_t *GPIOx, uint8_t txPin, uint8_t rxPin, uint8_t a
     GPIOx->MODER &= ~( 3U << ( rxPin * 2 ) );                               // Clean bits
     GPIOx->MODER |=  ( 2U << ( rxPin * 2 ) );                               // Set as Alternate mode
 
-    if( txPin < 8 )
+    GPIOx->OSPEEDR |= ( 3U << ( rxPin * 2 ) );
+    GPIOx->OSPEEDR |= ( 3U << ( txPin * 2 ) );
+
+    if (txPin < 8) 
     {
-        GPIOx->AFRL |= ( altFunction << ( txPin * 4 ) );
-        GPIOx->AFRL |= ( altFunction << ( rxPin * 4 ) );
-    }
-    else
+        GPIOx->AFRL &= ~(0xF << (txPin * 4));
+        GPIOx->AFRL |= (altFunction << (txPin * 4));
+        
+        GPIOx->AFRL &= ~(0xF << (rxPin * 4));
+        GPIOx->AFRL |= (altFunction << (rxPin * 4));
+    } 
+    else 
     {
-        GPIOx->AFRL |= ( altFunction << ( ( txPin - 8 ) * 4) );
-        GPIOx->AFRL |= ( altFunction << ( ( rxPin - 8 ) * 4) );
+        GPIOx->AFRH &= ~(0xF << ((txPin - 8) * 4));
+        GPIOx->AFRH |= (altFunction << ((txPin - 8) * 4));
+        
+        GPIOx->AFRH &= ~(0xF << ((rxPin - 8) * 4));
+        GPIOx->AFRH |= (altFunction << ((rxPin - 8) * 4));
     }
 }
 
@@ -58,25 +64,60 @@ void SR_UART_WriteFrame( USART_t *USARTx, uint8_t *Pframe, uint8_t U8size )
     }
 }
 
+void SR_SendUARTSensorFrame( USART_t *USARTx, uint8_t U8sensor1, uint8_t U8sensor2, uint8_t U8sensor3)
+{
+    uint8_t U8frameToSend[ 7 ];
+
+    U8frameToSend[ 0 ] = BYTE_INIT;
+    U8frameToSend[ 1 ] = UART_READ;
+    U8frameToSend[ 2 ] = U8sensor1;
+    U8frameToSend[ 3 ] = U8sensor2;
+    U8frameToSend[ 4 ] = U8sensor3;
+    U8frameToSend[ 5 ] = SR_CalculateCRC( U8frameToSend );
+    U8frameToSend[ 6 ] = BYTE_END;
+
+    SR_UART_WriteFrame( USARTx, U8frameToSend, FRAME_SIZE );
+}
+
+bool SR_RecivedUARTFrameIsCorrect( uint8_t *PdataFrame )
+{
+    if( PdataFrame[ 0 ] != BYTE_INIT )
+    {
+        return false;
+    } 
+
+    if( PdataFrame[ 5 ] != SR_CalculateCRC( PdataFrame ) )
+    {
+        return false;
+    }
+
+    if( PdataFrame[ 6 ] != BYTE_END )
+    {
+        return false;
+    }
+
+    return true;
+}
+
 void SR_Init_UART ( USART_t *USARTx, uint32_t u32baudrate )
 {
     RCC->AHB1ENR |= RCC_AHB1ENR_GPIOA_EN;                                           // Enable clock access to GPIOA
     
     if( USARTx == USART1 )
     {
-        SR_Init_GPIO( GPIOA, 9, 10, 7 );
+        SR_Init_UART_GPIO( GPIOA, 9, 10, 7 );
         RCC->APB2ENR |= RCC_APB2ENR_USART1EN;                                       // Enable clock access to UART1
         SR_UART_SetBaudRate( USARTx, CLOCK_84MHZ, u32baudrate );                    // Set the baudrate
     }
     else if( USARTx == USART2 )
     {
-        SR_Init_GPIO( GPIOA, 2, 3, 7 );
+        SR_Init_UART_GPIO( GPIOA, 2, 3, 7 );
         RCC->APB1ENR |= RCC_APB1ENR_USART2EN;                                       // Enable clock access to UART2 
         SR_UART_SetBaudRate( USARTx, CLOCK_42MHZ, u32baudrate );                    // Set the baudrate
     }
     else if( USARTx == USART6 )
     {
-        SR_Init_GPIO( GPIOA, 11, 12, 8 );
+        SR_Init_UART_GPIO( GPIOA, 11, 12, 8 );
         RCC->APB2ENR |= RCC_APB2ENR_USART6EN;                                       // Enable clock access to UART6
         SR_UART_SetBaudRate( USARTx, CLOCK_84MHZ, u32baudrate );                    // Set the baudrate  
     }

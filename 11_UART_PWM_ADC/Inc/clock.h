@@ -8,11 +8,12 @@
 #define RCC_PLLCFGR_PLLN_Pos   ( 6U )
 #define RCC_PLLCFGR_PLLP_Pos   ( 16U )
 #define RCC_PLLCFGR_PLLSRC_Pos ( 22U )
-#define PLLM_DIV16             ( 16U  << RCC_PLLCFGR_PLLM_Pos )
-#define PLLN_MUL336            ( 336U << RCC_PLLCFGR_PLLN_Pos )
-#define PLLP_DIV4              ( 4U   << RCC_PLLCFGR_PLLP_Pos )
-#define PLL_SRC_HSI            ( RCC_PLLCFGR_PLLSRC_Pos )
 
-extern void SR_Init_Clock( void );
+#define PLLM_DIV16             ( 16U  << RCC_PLLCFGR_PLLM_Pos )  // 0x00000010
+#define PLLN_MUL336            ( 336U << RCC_PLLCFGR_PLLN_Pos )  // 0x00005400
+#define PLLP_DIV4              ( 1U   << RCC_PLLCFGR_PLLP_Pos )  // 0x00040000
+#define PLL_SRC_HSI            ( 1U   << RCC_PLLCFGR_PLLSRC_Pos ) // 0x00400000
+
+void SystemClock_Config( void );
 
 #endif // CLOCK_H

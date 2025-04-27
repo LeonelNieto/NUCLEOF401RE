@@ -273,6 +273,16 @@
 #define ADC1_CR2_SWSTART_EN                     ((uint32_t)0x40000000)
 #define ADC1_SR_EOC_Finish                      ((uint32_t)0x00000002)
 #define ADC1_CR2_CONT_CONTMODE                  ((uint32_t)0x00000002)
+
+// ################################################################# //
+//                                 FLASH                             //
+// ################################################################# //
+#define FLASH_BASE                              (( uint32_t ) 0x40023C00 )
+#define FLASH_ACR_2WS                           (( uint32_t ) 0x00000002 )
+#define FLASH_ACR_PRFTEN                        (( uint32_t ) 0x00000100 )
+#define FLASH_ACR_ICEN                          (( uint32_t ) 0x00000200 )
+#define FLASH_ACR_DCEN                          (( uint32_t ) 0x00000400 )
+
 // ###################################################################//
 //                              EXTI                                  //
 // ###################################################################//
@@ -307,12 +317,6 @@ typedef struct {
 #define GPIOA ((GPIO_t *)(GPIOA_BASE_ADDRESS))
 #define GPIOB ((GPIO_t *)(GPIOB_BASE_ADDRESS))
 #define GPIOC ((GPIO_t *)(GPIOC_BASE_ADDRESS))
-
-
-// ################################################################# //
-//                                 FLASH                             //
-// ################################################################# //
-#define FLASH_BASE                              (( uint32_t ) 0x40023C00 )
 
 
 // ###################################################################//

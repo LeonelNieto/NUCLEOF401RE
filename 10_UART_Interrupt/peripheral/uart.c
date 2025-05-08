@@ -83,3 +83,24 @@ void SR_Init_UART2 ( void )
     USART2->CR1   = ( USART_CR1_TE_EN | USART_CR1_RX_EN );                      // Enable Transmitter and receptor
     USART2->CR1  |= USART_CR1_USART_EN;                                         // Enable USART
 }
+
+
+static void ConfigureUartPinsAsAlternativeFunctions( void )
+{
+    RCC->AHB1ENR |= RCC_AHB1ENR_GPIOA_EN;                                       // Enable clock access to GPIOA
+    GPIOA->MODER &= ~( 1U << 4 );                                               // Clear register
+    GPIOA->MODER |= GPIO_MODER_02_ALFM;                                         // Set PA2 mode to alternate function mode
+    GPIOA->AFRL  |= GPIO_AFRL_AFRL2_AF7;                                        // Set PA2 type to UART_TX (AF07)
+    GPIOA->AFRL  &= ~( 1U << 11 );                                              // Clean bit
+
+    // Configure Rx
+    GPIOA->MODER &= ~( 1U << 6 );                                               // Clear register
+    GPIOA->MODER |= GPIO_MODER_03_ALFM;                                         // Set PA3 mode to alternate function mode
+    GPIOA->AFRL  |= GPIO_AFRL_AFRL3_AF7;                                        // Set PA3 type to UART_RX (AF07)
+    GPIOA->AFRL  &= ~( 1U << 15 );                                              // Clean bit
+}
+
+void SR_UartInterruptInit( void )
+{
+
+}

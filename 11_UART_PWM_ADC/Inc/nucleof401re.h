@@ -2,9 +2,11 @@
 #define NUCLEOF401RE_H
 
 #include <stdint.h>
+#include <stdbool.h>
 
 #define __IO volatile                        // Volatile Read and Write
 #define __I  volatile                        // Volatile only read
+#define __O volatile                         // volatile write only
 
 // ################################################################# //
 //                                RCC                                //
@@ -13,6 +15,8 @@
 #define RCC_CR_HSION                            ((uint32_t)0x00000001)
 #define RCC_CR_HSIRDY                           ((uint32_t)0x00000002)
 #define RCC_CR_HSEON                            ((uint32_t)0x00010000)
+#define RCC_CR_PLLRDY                           ((uint32_t)0x02000000)
+#define RCC_CR_PLLON                            ((uint32_t)0x01000000)
 #define RCC_CFGR_SW_HSI                         ((uint32_t)0x00000000)
 #define RCC_CFGR_SW_HSE                         ((uint32_t)0x00000001)
 #define RCC_CFGR_SW_PLL                         ((uint32_t)0x00000002)
@@ -31,6 +35,10 @@
 #define RCC_CFGR_PPRE1_DIV4                     ((uint32_t)0x00001400)
 #define RCC_CFGR_PPRE1_DIV8                     ((uint32_t)0x00001800)
 #define RCC_CFGR_PPRE1_DIV16                    ((uint32_t)0x00001C00)
+#define RCC_CFGR_PPRE2_DIV1                     ((uint32_t)0x00000000)
+#define RCC_CFGR_SW                             ((uint32_t)0x00000003)
+#define RCC_CFGR_SW_PLL                         ((uint32_t)0x00000002)
+#define RCC_CFGR_SWS_PLL                        ((uint32_t)0x00000008)
 #define RCC_AHB1ENR_GPIOA_EN	                ((uint32_t)0x00000001)
 #define RCC_AHB1ENR_GPIOB_EN                    ((uint32_t)0x00000002)
 #define RCC_AHB1ENR_GPIOC_EN                    ((uint32_t)0x00000004)
@@ -41,7 +49,10 @@
 #define RCC_AHB1ENR_DMA1_EN                     ((uint32_t)0x00020000)
 #define RCC_AHB1ENR_DMA2_EN                     ((uint32_t)0x00040000)
 #define RCC_APB1ENR_TIME2EN                     ((uint32_t)0x00000001)
+#define RCC_APB1ENR_TIME3EN                     ((uint32_t)0x00000002)
 #define RCC_APB1ENR_USART2EN                    ((uint32_t)0x00020000)
+#define RCC_APB2ENR_USART6EN                    ((uint32_t)0x00000020)
+#define RCC_APB2ENR_USART1EN                    ((uint32_t)0x00000010)
 #define RCC_APB2ENR_TIM1EN_ClockDisable         ((uint32_t)0x00000000)
 #define RCC_APB2ENR_TIM1EN_ClockEnabled         ((uint32_t)0x00000001)
 #define RCC_APB2ENR_USART1_ClockEnabled         ((uint32_t)0x00000010)
@@ -185,14 +196,10 @@
 #define GPIO_ODR_15_ON                          ((uint32_t)0x00008000)
 #define GPIO_BSRR_BS13                          ((uint32_t)0x00002000)
 #define GPIO_BSRR_BR13                          ((uint32_t)0x20000000)
-
 //                                  AFRL                             //
 #define GPIO_AFRL_AFRL2_AF7                     ((uint32_t)0x00000700)
 #define GPIO_AFRL_AFRL3_AF7                     ((uint32_t)0x00007000)
-
-//                                  AFRH                             //
-#define GPIO_AFRH_AFRH9_AF7                     ((uint32_t)0x00000070)
-#define GPIO_AFRH_AFRH10_AF7                    ((uint32_t)0x00000700)
+#define GPIO_AFRL_AFRL6_AF2                     ((uint32_t)0x02000000)
 
 // ################################################################# //
 //                                EXTI                               //
@@ -202,7 +209,6 @@
 #define EXTI_RTSR_TR13_RISING_TRIGGER_EN        ((uint32_t)0x00002000)
 #define EXTI_FTSR_TR13_FALLING_TRIGGER_EN       ((uint32_t)0x00002000)
 #define EXTI_PR_PR13_TRIGGER_OCCURRED           ((uint32_t)0x00002000)
-
 
 // ################################################################# //
 //                                SYSCFG                             //
@@ -240,17 +246,42 @@
 #define TIMx_CR1_CEN                            ((uint32_t)0x00000001)
 #define TIMx_SR_UIF                             ((uint32_t)0x00000001)
 #define TIMx_DIER_UIE                           ((uint32_t)0x00000001)
+#define TIMx_CCMR1_OC1M_PWM_Mode_1              ((uint32_t)0x00000060)
+#define TIMx_CCER_CC1E_ON                       ((uint32_t)0x00000001)
 
 // ################################################################# //
 //                                 USART                             //
 // ################################################################# //
-#define USART1_BASE_ADDRESS                     ((uint32_t)0x40011000)
-#define USART2_BASE_ADDRESS                     ((uint32_t)0x40004400)
-#define USART_CR1_TE_EN                         ( 1U << 3)
-#define USART_CR1_RX_EN                         ( 1U << 2)
-#define USART_CR1_USART_EN                      ((uint32_t)0x00002000)
+#define USART1_BASE_ADDRESS                     ( ( uint32_t )0x40011000 )
+#define USART2_BASE_ADDRESS                     ( ( uint32_t )0x40004400 )
+#define USART6_BASE_ADDRESS                     ( ( uint32_t )0x40011400 )
+#define USART_CR1_TE_EN                         ( 1U << 3 )
+#define USART_CR1_RX_EN                         ( 1U << 2 )
+#define USART_CR1_USART_EN                      ( ( uint32_t )0x00002000 )
 #define USART_SR_TXE                            ( 1U << 7 )
 #define USART_SR_RXNE                           ( 1U << 5 )
+
+// ################################################################# //
+//                                ADC1                               //
+// ################################################################# //
+#define ADC1_BASE_ADDRESS                       ((uint32_t)0x40012000)
+#define ADC1_SQR3_SQ1_CH1                       ((uint32_t)0x00000001)
+#define ADC1_SQR3_SQ2_CH16                      ((uint32_t)0x00000200)
+#define ADC1_SQR1_LENGTH_1CHANNEL               ((uint32_t)0x00000000)
+#define ADC1_SQR1_LENGTH_2CHANNELS              ((uint32_t)0x00100000)
+#define ADC1_CR2_ADON_EN                        ((uint32_t)0x00000001)
+#define ADC1_CR2_SWSTART_EN                     ((uint32_t)0x40000000)
+#define ADC1_SR_EOC_Finish                      ((uint32_t)0x00000002)
+#define ADC1_CR2_CONT_CONTMODE                  ((uint32_t)0x00000002)
+
+// ################################################################# //
+//                                 FLASH                             //
+// ################################################################# //
+#define FLASH_BASE                              (( uint32_t ) 0x40023C00 )
+#define FLASH_ACR_2WS                           (( uint32_t ) 0x00000002 )
+#define FLASH_ACR_PRFTEN                        (( uint32_t ) 0x00000100 )
+#define FLASH_ACR_ICEN                          (( uint32_t ) 0x00000200 )
+#define FLASH_ACR_DCEN                          (( uint32_t ) 0x00000400 )
 
 // ###################################################################//
 //                              EXTI                                  //
@@ -266,7 +297,6 @@ typedef struct
 } EXTI_t;
 
 #define EXTI ((EXTI_t *)(EXTI_BASE_ADDRESS))
-
 
 // ###################################################################//
 //                              GPIO                                  //
@@ -515,11 +545,9 @@ typedef struct
 #define TIM10 ((TIM_t *)(TIM10_BASE_ADDRESS))
 #define TIM11 ((TIM_t *)(TIM11_BASE_ADDRESS))
 
-
 // ###################################################################//
 //                                USART                               //
 // ###################################################################//
-
 typedef struct
 {
     __IO uint32_t SR;                                                                // Offset 0x00 Status register 
@@ -530,8 +558,55 @@ typedef struct
     __IO uint32_t CR3;                                                               // Offset 0x14 Control register 3 
     __IO uint32_t GPTR;                                                              // Offset 0x18 Guard time and prescaler register 
 } USART_t;
+#define USART1 ( ( USART_t * )( USART1_BASE_ADDRESS ) )
+#define USART2 ( ( USART_t * )( USART2_BASE_ADDRESS ) )
+#define USART6 ( ( USART_t * )( USART6_BASE_ADDRESS ) )
 
-#define USART1 ((USART_t *)(USART1_BASE_ADDRESS))
-#define USART2 ((USART_t *)(USART2_BASE_ADDRESS))
+// ###################################################################//
+//                                ADC                                 //
+// ###################################################################//
+typedef struct
+{
+    __IO uint32_t SR;
+    __IO uint32_t CR1;
+    __IO uint32_t CR2;
+    __IO uint32_t SMPR1;
+    __IO uint32_t SMPR2;
+    __IO uint32_t JOFR1;
+    __IO uint32_t JOFR2;
+    __IO uint32_t JOFR3;
+    __IO uint32_t JOFR4;
+    __IO uint32_t HTR;
+    __IO uint32_t LTR;
+    __IO uint32_t SQR1;
+    __IO uint32_t SQR2;
+    __IO uint32_t SQR3;
+    __I  uint32_t JSQR;
+    __I  uint32_t JDR1;
+    __I  uint32_t JDR2;
+    __I  uint32_t JDR3;
+    __I  uint32_t JDR4;
+    __I  uint32_t DR;
+         uint32_t RESERV0[172];
+    __IO uint32_t CCR;                  // Validate if this is the address 0x300
+} ADC1_t;
+
+#define ADC1 ( ( ADC1_t * )( ADC1_BASE_ADDRESS ) )
+
+// ###################################################################//
+//                              FLASH                                 //
+// ###################################################################//
+
+typedef struct
+{
+    __IO uint32_t ACR;
+    __O  uint32_t KEYR;
+    __O  uint32_t OPTKEYR;
+    __IO uint32_t SR;
+    __IO uint32_t CR;
+    __IO uint32_t OPTCR;
+} FLASH_t;
+
+#define FLASH ( ( FLASH_t * )( FLASH_BASE ) )
 
 #endif //NUCLEOF401RE_H

@@ -1,0 +1,16 @@
+{
+    // "cortex-debug.gdbPath": "/usr/bin/gdb-multiarch",
+    // "cortex-debug.openocdPath": "/home/linuxbrew/.linuxbrew/bin/openocd",
+    "files.associations": {
+        "stdint.h": "c",
+        "globaldefine.h": "c",
+        "stdio.h": "c",
+        "nucleof401re.h": "c",
+        "timer.h": "c",
+        "clock.h": "c",
+        "crc.h": "c",
+        "uart.h": "c"
+    },
+    "makefile.configureOnOpen": true,
+    "cortex-debug.variableUseNaturalFormat": false
+}
